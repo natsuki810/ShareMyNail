@@ -13,7 +13,7 @@ SNSなどでネイルのデザインを検索していますが、セルフネ�
 - セルフネイルを楽しんでいる人
 - これからセルフネイルを始めたい人
 - プロ用アイテム以外のアイテムを探している人
-​
+
 ### 主な利用シーン
 - セルフネイルのアイテムを揃えたい時
 - ネイルデザインを検索したい時
@@ -23,15 +23,19 @@ SNSなどでネイルのデザインを検索していますが、セルフネ�
 ​
 ## 設計書
 後ほど作成予定
-​
+
+## 実装機能リスト
+https://docs.google.com/spreadsheets/d/1O3m3jNU8Qh6wXp3J3RhexpgVC7zySVckZGjpJ3d4yA0/edit#gid=885378170
+
+
 ## 開発環境
 - OS：MacOS
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-​
+
 ## 使用素材
 - Font Awesome
 - フリー素材として以下を使用
- - GIRLY DROP（https://girlydrop.com/）
+  - GIRLY DROP（https://girlydrop.com/）
