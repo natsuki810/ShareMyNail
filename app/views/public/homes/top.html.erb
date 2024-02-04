@@ -1,6 +1,30 @@
+<div class="bg-pink pl-3">
+  Home
+</div>
 <div class="container">
   <div class="row">
-    <div class="col">ようこそ、ShareMyNailへ</div>
+    <div class="h3">
+      ようこそ、ShareMyNailへ
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-3">
+      <span class="h5">ShareMyNail</span>は<br>
+      セルフネイラーのためのデザイン検索サイトです。<br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="h4">New Design</div>
+  </div>
+  <div class="row">
+    <% @designs.each do |design| %>
+    <% if @count == 4 %>
+    <% break %>
+    <% end %>
+    <div class="col-2 m-1">
+      
+    </div>
   </div>
 </div>
+
 

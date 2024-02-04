@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :comments
   has_many :reports
+
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end

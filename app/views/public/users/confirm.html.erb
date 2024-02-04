@@ -1,0 +1,26 @@
+<div class="bg-pink pl-3">
+  <%= link_to "Home", root_path %> >
+  <%= link_to "My Page", users_mypage_path %> >
+  <%= link_to "My Profile", users_mypage_edit_path %> >
+  Withdraw
+</div>
+<div class="container">
+  <div class="border border-dark rounded m-3 p-3">
+    <div class="h5 text-center font-weight-bold bg-danger text-white p-3 ">
+      本当に退会しますか？
+    </div>
+    <div class="text-center p-3">
+      退会すると、過去の投稿・コメント・いいねなどが削除され、<br>
+      復元ができなくなります。<br>
+      退会する場合は、「退会する」をクリックしてください。
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-3 my-2">
+        <%= link_to "退会しない", users_mypage_edit_path ,class: "btn btn-outline-primary btn-block" %>
+      </div>
+      <div class="col-3 my-2">
+        <%= link_to "退会する", users_withdrawal_path, method: :patch, class: "btn btn-outline-danger btn-block",data: { confirm: '削除しますか？' } %>
+      </div>
+    </div>
+  </div>
+</div>

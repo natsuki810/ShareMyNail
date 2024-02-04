@@ -11,66 +11,65 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="comtainer">
-          <div class="container justify-content-between">
-            <div class="navbar-brand p-3">
-              <%= link_to "ShareMyNail", root_path %>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto">
-                <% if user_signed_in? %>
-                <li class="nav item">
-                  <%= link_to "About", about_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "My Page", users_mypage_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Design ALL", designs_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-                </li>
-                <% elsif admin_signed_in? %>
-                <li class="nav item">
-                  <%= link_to "Design ALL", admin_designs_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "User All", admin_users_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "report All", admin_reports_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Color All", admin_colors_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-                </li>
-                <% else %>
-                <li class="nav item">
-                  <%= link_to "About", about_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Design ALL", designs_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav item">
-                  <%= link_to "Sign In", user_session_path, class: 'nav-link text-dark' %>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
+    <hader>
+      <nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark p-1">
+        <div class="h2">
+          <%= link_to "ShareMyNail", root_path %>
         </div>
-      </nav>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+          <li class="nav item">
+            <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "My Page", users_mypage_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "New Design", new_design_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Design ALL", designs_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+          <% elsif admin_signed_in? %>
+          <li class="nav item">
+            <%= link_to "Design ALL", admin_designs_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "User All", admin_users_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "report All", admin_reports_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Color All", admin_colors_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+          <% else %>
+          <li class="nav item">
+            <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Design ALL", designs_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Sign In", user_session_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav item">
+            <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link text-dark' %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     </header>
     <main class="mb-auto">
       <%= yield %>
