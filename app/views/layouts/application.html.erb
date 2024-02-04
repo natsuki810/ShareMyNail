@@ -29,26 +29,26 @@
             <%= link_to "My Page", users_mypage_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
-            <%= link_to "New Design", new_design_path, class: 'nav-link text-dark' %>
+            <%= link_to "New Post", new_design_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
-            <%= link_to "Design ALL", designs_path, class: 'nav-link text-dark' %>
+            <%= link_to "Designs ALL", designs_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
           </li>
           <% elsif admin_signed_in? %>
           <li class="nav item">
-            <%= link_to "Design ALL", admin_designs_path, class: 'nav-link text-dark' %>
+            <%= link_to "Designs ALL", admin_designs_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
-            <%= link_to "User All", admin_users_path, class: 'nav-link text-dark' %>
+            <%= link_to "Users All", admin_users_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
-            <%= link_to "report All", admin_reports_path, class: 'nav-link text-dark' %>
+            <%= link_to "reports All", admin_reports_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
-            <%= link_to "Color All", admin_colors_path, class: 'nav-link text-dark' %>
+            <%= link_to "Colors All", admin_colors_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
             <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
@@ -58,7 +58,7 @@
             <%= link_to "About", about_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
-            <%= link_to "Design ALL", designs_path, class: 'nav-link text-dark' %>
+            <%= link_to "Designs ALL", designs_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav item">
             <%= link_to "Sign In", user_session_path, class: 'nav-link text-dark' %>

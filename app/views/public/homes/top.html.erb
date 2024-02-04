@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="p-3">
+    <div class="col p-2">
       <span class="h5">ShareMyNail</span>は<br>
       セルフネイラーのためのデザイン検索サイトです。<br>
     </div>
@@ -22,9 +22,22 @@
     <% break %>
     <% end %>
     <div class="col-2 m-1">
-      
+      <%= link_to designs_path(design.id) do %>
+        <%= attachment_image_tag design_image, :image %>
+      <% end %>
+    </div>
+  <div class="row">
+    <div class="col-2 m-1">
+      <%= design.name %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-2 m-1">
+      <%= design.user.name %>
+    </div>
+  </div>
+  </div>
+  <% end %>
 </div>
 
 

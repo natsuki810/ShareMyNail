@@ -1,0 +1,35 @@
+<div class="bg-pink pl-3">
+  <%= link_to "Home", admin_top_path %> >
+  Color All
+</div>
+  <%= form_with model: @color, url: admin_colors_path do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="h3">Colors All</div>
+  </div>
+  <div class="row">
+    <div class="h4">Create Color</div>
+  </div>
+  <div class="row">
+    <div class="col-3 my-2">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="col-3 my-2">
+      <%= f.submit "Create", class: "btn btn-outline-success btn-block" %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="h4">Colors</div>
+  </div>
+  <% @colors.each do |color| %>
+  <div class="row">
+    <div class="col-3 my-2">
+      <%= color.name %>
+    </div>
+    <div class="col-3 my-2">
+      <%= link_to "Derete", admin_color_path(color.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+    </div>
+  <% end%> 
+  </div>
+</div>

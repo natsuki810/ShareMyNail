@@ -13,14 +13,14 @@ namespace :admin do
   resources :users, only: [:index, :comments, :show, :edit, :update]
   get '/users/:id/comments' => 'users#comments'
   get '/users/:id/designs' => 'users#designs'
-  resources :colors, only: [:index, :create, :destroy]
+  resources :colors, only: [:new, :index, :create, :destroy]
   resources :comments, only: [:index, :destroy]
   resources :reports, only: [:index, :update]
 end
 
 scope module: :public do
   root to: 'homes#top'
-  get '/home/about' => 'home#adout', as: 'about'
+  get '/homes/about' => 'homes#about', as: 'about'
   get '/users/mypage' => 'users#show'
   get '/users/mypage/edit' => 'users#edit'
   patch '/users/mypage/edit' => 'users#update'
