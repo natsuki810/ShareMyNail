@@ -17,7 +17,11 @@ class Admin::ColorsController < ApplicationController
 
   def destroy
     @color = Color.find(params[:id])
+    @designs = Design.where(color_id: @color.id)
     @color.destroy
+    if @designs.any?
+      @designs.update(color_id: Color.find_by_name("その他").id)
+    end
     redirect_to admin_colors_path
   end
 

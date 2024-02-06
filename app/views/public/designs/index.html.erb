@@ -1,0 +1,27 @@
+<div class="bg-pink pl-3">
+  <%= link_to "Home", root_path %> >
+  Designs All
+</div>
+<div class="container">
+  <div class="row">
+    <div class="h3">Designs All</div>
+  </div>
+  <div class="d-flex flex-column">
+  <% @designs.each do |design| %>
+    <div class="col-3">
+      <%= link_to design_path(design), class: "design-link" do %>
+        <%= image_tag design.image, width: "70%", height: "70%" %>
+      <% end %>
+    </div>
+    <div class="col-3">
+      design:<%= design.name %>
+    </div>
+    <div class="col-3">
+      user:<%= design.user.name %>
+    </div>
+    <div class="col-3">
+      color:<%= design.color.name %>
+    </div>
+    <% end %>
+  </div>
+</div>

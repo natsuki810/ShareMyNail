@@ -28,7 +28,7 @@ scope module: :public do
   get '/users/designs' => 'users#designs'
   get '/users/confirm' => 'users#confirm'
   patch 'users/withdrawal' => 'users#withdrawal'
-  resources :designs, only: [:index, :edit, :update, :destroy, :new, :create]
+  resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create]
   resources :comments, only: [:new, :create, :edit, :update]
   resources :reports, only: [:new, :create]
   resources :favorites, only: [:create, :index, :destroy]

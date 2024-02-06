@@ -16,26 +16,22 @@
   <div class="row">
     <div class="h4">New Design</div>
   </div>
-  <div class="row">
+  <div class="d-flex flex-column">
     <% @designs.each do |design| %>
     <% if @count == 4 %>
     <% break %>
     <% end %>
-    <div class="col-2 m-1">
+    <div class="col-2">
       <%= link_to designs_path(design.id) do %>
-        <%= attachment_image_tag design_image, :image %>
+        <%= image_tag design.image, width: '100%', height: '100%' %>
       <% end %>
     </div>
-  <div class="row">
-    <div class="col-2 m-1">
+    <div class="col-2">
       <%= design.name %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-2 m-1">
+    <div class="col-2">
       <%= design.user.name %>
     </div>
-  </div>
   </div>
   <% end %>
 </div>
