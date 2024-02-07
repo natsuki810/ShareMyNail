@@ -19,13 +19,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-2 mb-2 py-3 font-weight-bold">Introduction</div>
-    <div class="col-6 mb-2 py-3 border rounded">
+    <div class="col-2 my-2 py-3 font-weight-bold">Introduction</div>
+    <div class="col-6 my-2 py-3 border rounded">
       <%= @user.introduction %>
     </div>
   </div>
     <div class="row">
-      <div class="col-3 my-2">
+      <div class="col-3 my-2 py-3">
         <%= link_to "Edit Profile >>", users_mypage_edit_path, class: "btn btn-outline-primary btn-block" %>
       </div>
     </div>
@@ -34,23 +34,27 @@
   </div>
   <div class="row">
     <% @designs.each do |design| %>
-    <div class="col-3 m-2">
-      <%= image_tag design.image %><br>
-      <%= design.name %>
+    <div class="col-3">
+      <%= link_to design_path(design.id), class: "design-link" do %>
+        <%= image_tag design.image, width: "80%", height: "80%" %>
+      <% end %>
+      <div class="col">
+        <%= design.name %>
+      </div>
     </div>
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3 my-2">
+    <div class="col-3">
       <%= link_to "All My Designs >>", users_designs_path, class: "btn btn-outline-primary btn-block" %>
     </div>
-    <div class="col-3 my-2">
+    <div class="col-3">
       <%= link_to "*修正予定Favorite Designs >>", users_designs_path, class: "btn btn-outline-primary btn-block" %>
     </div>
-    <div class="col-3 my-2">
+    <div class="col-3">
       <%= link_to "All My Comments >>", users_comments_path, class: "btn btn-outline-primary btn-block" %>
     </div>
-    <div class="col-3 my-2">
+    <div class="col-3">
       <%= link_to "New Post >>", new_design_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>

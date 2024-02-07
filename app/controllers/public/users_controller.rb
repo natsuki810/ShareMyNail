@@ -3,7 +3,12 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @designs = Design.all
+    @designs = current_user.designs.order(created_at: :desc).limit(4)
+  end
+  
+  def designs
+    @user = current_user
+    @designs = current_user.designs.order(created_at: :desc)
   end
 
   def edit

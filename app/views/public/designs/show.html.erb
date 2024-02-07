@@ -15,17 +15,26 @@
       user:<%= @design.user.name %>
     </div>
     <div class="col-6">
-      <%= @design.introduction %>
+      introduction:<%= @design.introduction %>
     </div>
     <div class="col-6">
       color:<%= @design.color.name %>
     </div>
-  </div>
+    <% if @design.user_id == current_user.id %>
+    <div class="col-6">
+          <% if @design.is_active %>
+          <span class="font-weight-bold text-success">Public</span>
+        <% else %>
+          <span class="font-weight-bold text-secondary">Private</span>
+        <% end %>
+    </div>
+    <% end %>
+  </div> 
   <div class="row">
     <div class="col-3 my-2">
       <%= link_to "Designs All >>", designs_path, class: "btn btn-outline-primary btn-block" %>
     </div>
-    <% if @design.user == current_user %>
+    <% if @design.user_id == current_user.id %>
     <div class="col-3 my-2">
       <%= link_to "Edit Design >>", edit_design_path, class: "btn btn-outline-success btn-block" %>
     </div>
