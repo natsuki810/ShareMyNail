@@ -9,6 +9,24 @@ Home
     <div class="h4">New Design</div>
   </div>
   <div class="row">
+    <% @designs.each do |design| %>
+    <div class="col-3 my-3">
+      <%= link_to admin_design_path(design.id), class: "design-link" do %>
+        <%= image_tag design.image, width: "70%", height: "70%" %>
+      <% end %>
+      <div class="my-1">
+        <%= design.name %>
+      </div>
+      <div class="my-1">
+        <%= design.user.name %>
+      </div>
+    </div>
+    <% end %>
+    <div class="col-3 my-3">
+      <%= link_to "Designs All", admin_designs_path, class: "btn btn-outline-primary btn-block" %>
+    </div>
+  </div>
+  <div class="row">
     <div class="h4">New Report</div>
   </div>
   <div class="row">

@@ -7,8 +7,12 @@ class Public::DesignsController < ApplicationController
   def create
     @design = Design.new(design_params)
     @design.user_id = current_user.id
-    @design.save
-    redirect_to designs_path
+    @design.is_active = !!params[:public]
+    if @design.save
+       redirect_to design_path(@design)
+    else
+       render :new
+    end
   end
 
   def index
@@ -34,7 +38,7 @@ class Public::DesignsController < ApplicationController
       redirect_to  design_path
     else
       if @design.update(design_params)
-        redirect_to design_path
+         redirect_to design_path
       else
         render :edit
       end

@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        design:
+          attributes:
+            name:
+              blank: "タイトルが空欄です。"
+            introduction:
+              blank: "説明が空欄です。"
+            image:
+              blank: "画像が空欄です。"

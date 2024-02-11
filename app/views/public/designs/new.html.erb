@@ -2,6 +2,19 @@
   <%= link_to "Home", root_path %> >
   New Post
 </div>
+<style>
+  .error-message {
+    margin-bottom: 5px;
+  }
+</style>
+<% if @design.errors.any? %>
+<%= @design.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @design.errors.messages.each do |_, messages| %>
+      <li class="error-message"><%= messages.join(', ') %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with model: @design, url: designs_path do |f| %>
 <div class="container">
   <div class="row">
@@ -15,11 +28,11 @@
       <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="h4">image</div>
   </div>
-  <div class="row">
+  <div class="rowr">
     <div class="col-6 mb-2 py-2">
       <%= f.file_field :image, accept: "image/*" %>
     </div>
@@ -43,16 +56,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6 mn-2 py-2">
-      <%= f.radio_button :is_active, "true" %>
-      <%= f.label :is_active, "Public" %>
-      <%= f.radio_button :is_active, "false" %>
-      <%= f.label :is_active, "Private" %>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-3 m-2">
-      <%= f.submit "Create",class: "btn btn-outline-success btn-block" %>
+      <%= f.submit "公開", name: "public", class: "btn btn-outline-success btn-block" %>
+    </div>
+    <div class="col-3 m-2">
+      <%= f.submit "下書き保存", name: "private", class: "btn btn-outline-secondary btn-block" %>
     </div>
   </div>
 <% end %>

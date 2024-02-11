@@ -5,10 +5,13 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @designs = current_user.designs.order(created_at: :desc).limit(4)
   end
-  
+
   def designs
-    @user = current_user
-    @designs = current_user.designs.order(created_at: :desc)
+    if params[:id] == current_user.id.to_s
+       @designs = Design.where(user_id:params[:id]).order(created_at: :desc)
+    else
+       @designs = Design.where(user_id:params[:id]).order(created_at: :desc).where(is_active: true)
+    end
   end
 
   def edit
@@ -20,11 +23,11 @@ class Public::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to users_mypage_path
   end
-  
+
   def confirm
     @user = current_user
   end
-  
+
   def withdrawal
     @user = current_user
     @user.update(is_active: "false")

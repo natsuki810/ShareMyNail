@@ -1,11 +1,13 @@
 <div class="bg-pink pl-3">
-  <%= link_to "Home", root_path %> > My Page
+  <%= link_to "Home", admin_top_path %> >
+  <%= link_to "Users All", admin_users_path %> >
+  <%= @user.name %>
 </div>
 <div class="container">
   <div class="row">
-    <div class="h3">My Page</div>
+    <div class="h3">User's Page</div>
   </div>
-  <div class="row">
+    <div class="row">
     <div class="h4">Profile</div>
   </div>
   <div class="row">
@@ -24,22 +26,35 @@
       <%= @user.introduction %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-2 my-2 py-3 font-weight-bold">user status</div>
+    <div class="col-2 my-2 py-3">
+      <% if @user.is_active %>
+        <span class="font-weight-bold text-success">有効</span>
+      <% else %>
+        <span class="font-weight-bold text-secondary">退会</span>
+      <% end %>
+    </div>
+  </div>
     <div class="row">
       <div class="col-3 my-2 py-3">
-        <%= link_to "Edit Profile >>", users_mypage_edit_path, class: "btn btn-outline-primary btn-block" %>
+        <%= link_to "Edit Profile >>", edit_admin_user_path, class: "btn btn-outline-primary btn-block" %>
       </div>
     </div>
   <div class="row">
-    <div class="h4">My Design</div>
+    <div class="h4">User's Design</div>
   </div>
   <div class="row">
     <% @designs.each do |design| %>
     <div class="col-3 my-5">
-      <%= link_to design_path(design.id), class: "design-link" do %>
+      <%= link_to admin_design_path(design.id), class: "design-link" do %>
         <%= image_tag design.image, width: "80%", height: "80%" %>
       <% end %>
       <div class="col">
         <%= design.name %>
+      </div>
+      <div class="col">
+        <%= design.user.name %>
       </div>
       <div class="col">
         <% if design.is_active %>
@@ -53,16 +68,11 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <%= link_to "Users Designs Al >>", users_designs_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
+      <%= link_to "User's Designs AlL >>", admin_users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
     <div class="col-3">
-      <%= link_to "*修正予定Favorite Designs >>", users_designs_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
-    </div>
-    <div class="col-3">
-      <%= link_to "All My Comments >>", users_comments_path, class: "btn btn-outline-primary btn-block" %>
-    </div>
-    <div class="col-3">
-      <%= link_to "New Post >>", new_design_path, class: "btn btn-outline-primary btn-block" %>
+      <%= link_to "User's Comments AlL >>", admin_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
+</div>
 </div>

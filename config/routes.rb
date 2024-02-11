@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
 namespace :admin do
   get '/top' => 'homes#top', as: 'top'
-  resources :designs, only: [:index, :show, :edit, :update, :destroy, :new]
-  resources :users, only: [:index, :comments, :show, :edit, :update]
+  resources :designs, only: [:index, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update]
   get '/users/:id/comments' => 'users#comments'
-  get '/users/:id/designs' => 'users#designs'
+  get '/users/:id/designs' => 'users#designs', as: "users_designs"
   resources :colors, only: [:new, :index, :create, :destroy]
   resources :comments, only: [:index, :destroy]
   resources :reports, only: [:index, :update]
@@ -25,7 +25,7 @@ scope module: :public do
   get '/users/mypage/edit' => 'users#edit'
   patch '/users/mypage/edit' => 'users#update'
   get '/users/comments' => 'users#comments'
-  get '/users/designs' => 'users#designs'
+  get '/users/:id/designs' => 'users#designs' ,as: "users_designs"
   get '/users/confirm' => 'users#confirm'
   patch 'users/withdrawal' => 'users#withdrawal'
   resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create]

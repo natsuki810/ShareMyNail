@@ -29,7 +29,9 @@
       <%= user.id %>
     </div>
     <div class="col-3 m-2">
-      <%= user.name %>
+      <%= link_to admin_user_path(user.id), class: "user-link" do %>
+        <%= user.name %>
+      <% end %>
     </div>
     <div class="col-3 m-2">
       <% if user.is_active %>
