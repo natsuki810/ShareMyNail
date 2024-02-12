@@ -4,7 +4,11 @@ class Design < ApplicationRecord
   validates :image, presence: true
   validates :introduction, presence: true
   belongs_to :user
-  has_many :favorites
-  has_many :comments
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :color
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 end

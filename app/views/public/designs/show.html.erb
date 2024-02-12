@@ -7,44 +7,100 @@
   <div class="row">
     <div class="h3"><%= @design.name %></div>
   </div>
-  <div class="d-flex flex-column">
-    <div class="col-6">
-      <%= image_tag @design.image, width: "100%", height: "100%" %>
-    </div>
-    <div class="col-6">
-      user:<%= @design.user.name %>
-    </div>
-    <div class="col-6">
-      introduction:<%= @design.introduction %>
-    </div>
-    <div class="col-6">
-      color:<%= @design.color.name %>
-    </div>
-    <% if @design.user_id == current_user.id %>
-    <div class="col-6">
+  <div class="row">
+    <div class="d-flex flex-column">
+      <div class="col-6 my-2">
+        <%= image_tag @design.image, width: "100%", height: "100%" %>
+      </div>
+      <div>
+        user:<%= @design.user.name %>
+      </div>
+      <div>
+        introduction:<%= @design.introduction %>
+      </div>
+      <div>
+        color:<%= @design.color.name %>
+      </div>
+      <% if @design.user_id == current_user.id %>
+        <div>
           <% if @design.is_active %>
-          <span class="font-weight-bold text-success">公開</span>
-        <% else %>
-          <span class="font-weight-bold text-secondary">非公開</span>
-        <% end %>
+            <span class="font-weight-bold text-success">公開</span>
+          <% else %>
+            <span class="font-weight-bold text-secondary">非公開</span>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <% end %>
+    <div class="d-flex flex-column">
+      <% if @design.favorited_by?(current_user) %>
+      <div>
+        <%= link_to design_favorites_path(@design), method: :delete do %>
+          ♥<%= @design.favorites.count %> いいね
+        <% end %>
+      </div>
+      <% else %>
+      <div>
+        <%= link_to design_favorites_path(@design), method: :post do %>
+          ♡<%= @design.favorites.count %> いいね
+        <% end %>
+      </div>
+      <% end %>
+      <div>コメント<%= @design.comments.count %></div>
+      <% @design.comments.each do |comment| %>
+        <div class="col">
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+          <%= comment.user.name %><br>
+          <%= comment.comment %>
+          <div>
+            <% if comment.user = current_user %>
+            <%= link_to "コメント編集", design_comment_path(@design, comment) %>
+            <%= link_to "コメント削除", design_comment_path(@design, comment), method: :delete %>
+            <% end %>
+          </div>
+            <% comment.replies.each do |reply| %>
+            <div>
+              <%= reply.user.name %>
+              <%= reply.reply %>
+            </div>
+            <% end %>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#replyForm">返信する</button>
+          <div id="replyForm" class="collapse">
+          <%= form_with model: @reply, url: comments_reply_index_path do |f| %>
+            <%= f.text_area :reply, placeholder: "返信", class: "form-control" %>
+            <%= f.hidden_field :comment_id, value: comment.id %>
+            <%= f.submit "返信する", class: "btn btn-outline-success btn-block"%>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+        <div class="col">
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#commentForm">コメントする</button>
+          <div id="commentForm" class="collapse">
+          <%= form_with model: @comment, url: design_comments_path(@design) do |f| %>
+            <%= f.text_area :comment, placeholder: "コメント",  class: "form-control" %>
+            <%= f.submit "コメントする", class: "btn btn-outline-success btn-block"%>
+          <% end %>
+          </div>
+        </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-3 my-2">
       <%= link_to "Designs All >>", designs_path, class: "btn btn-outline-primary btn-block" %>
     </div>
     <% if @design.user_id !=  current_user.id %>
-     <div class="col-3 my-2">
+     <div class="col-3">
        <%= link_to "User's Dsign All", users_designs_path(@design.user_id), class: "btn btn-outline-primary btn-block" %>
      </div>
     <% elsif @design.user_id == current_user.id %>
-    <div class="col-3 my-2">
-      <%= link_to "All My Designs >>", users_designs_path(@design.user_id), class: "btn btn-outline-primary btn-block" %>
-    </div>
-    <div class="col-3 my-2">
-      <%= link_to "Edit Design >>", edit_design_path, class: "btn btn-outline-success btn-block" %>
-    </div>
+      <div class="col-3">
+        <%= link_to "All My Designs >>", users_designs_path(@design.user_id), class: "btn btn-outline-primary btn-block" %>
+      </div>
+      <div class="col-3">
+        <%= link_to "Edit Design >>", edit_design_path, class: "btn btn-outline-success btn-block" %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :designs, dependent: :destroy
-  has_many :favorites
-  has_many :comments
-  has_many :reports
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :replies, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   def active_for_authentication?
     super && (is_active == true)

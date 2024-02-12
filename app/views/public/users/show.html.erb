@@ -53,10 +53,10 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <%= link_to "Users Designs Al >>", users_designs_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
+      <%= link_to "Users Designs All >>", users_designs_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
     <div class="col-3">
-      <%= link_to "*修正予定Favorite Designs >>", users_designs_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
+      <%= link_to "Favorite Designs >>", favorites_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
     <div class="col-3">
       <%= link_to "All My Comments >>", users_comments_path, class: "btn btn-outline-primary btn-block" %>

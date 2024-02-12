@@ -23,6 +23,8 @@ class Public::DesignsController < ApplicationController
   def show
     @design = Design.find(params[:id])
     @color = Color.all
+    @comment = Comment.where(design_id: @design.id)
+    @reply = Reply.new
   end
 
   def edit
@@ -38,7 +40,7 @@ class Public::DesignsController < ApplicationController
       redirect_to  design_path
     else
       if @design.update(design_params)
-         redirect_to design_path
+         redirect_to users_designs_path(current_user)
       else
         render :edit
       end
@@ -48,7 +50,7 @@ class Public::DesignsController < ApplicationController
   def destroy
     @design = Design.find(params[:id])
     @design.destroy
-    redirect_to designs_path
+    redirect_to users_designs_path(current_user)
   end
   private
 

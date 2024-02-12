@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
-  has_many :designs
+  belongs_to :design
   belongs_to :user
+  has_many :replies, dependent: :destroy
 end

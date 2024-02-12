@@ -1,5 +1,5 @@
 class Report < ApplicationRecord
-  belogns_to :comment
-  belogns_to :design
-  belogns_to :user
+  belongs_to :comment
+  belongs_to :design
+  belongs_to :user
 end

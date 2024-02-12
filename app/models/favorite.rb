@@ -1,5 +1,5 @@
 class Favorite < ApplicationRecord
-  before_action :authenticate_user!
-  belogns_to :user
-  belogns_to :design
+  belongs_to :user
+  belongs_to :design
+  validates :user_id, uniqueness: {scope: :design_id}
 end

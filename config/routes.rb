@@ -25,13 +25,19 @@ scope module: :public do
   get '/users/mypage/edit' => 'users#edit'
   patch '/users/mypage/edit' => 'users#update'
   get '/users/comments' => 'users#comments'
-  get '/users/:id/designs' => 'users#designs' ,as: "users_designs"
+  get '/users/:id/designs' => 'users#designs', as: "users_designs"
+  get '/users/:user_id/favorites' => 'favorites#index', as: 'favorites'
   get '/users/confirm' => 'users#confirm'
   patch 'users/withdrawal' => 'users#withdrawal'
-  resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create]
-  resources :comments, only: [:new, :create, :edit, :update]
+  resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create] do
+    resources :comments, only: [:create, :edit, :update, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :reports, only: [:new, :create]
-  resources :favorites, only: [:create, :index, :destroy]
+  namespace :comments do
+    resources :reply, only: [:create, :update, :destroy]
+  end
 end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
