@@ -1,0 +1,23 @@
+<div class="bg-pink pl-3">
+  <%= link_to "Home", root_path %> >
+  <%= link_to "Designs All", designs_path %> >
+  Report
+</div>
+<div class="container">
+  <div class="row">
+    <div class="h3">Report</div>
+  </div>
+  <%= form_with model: @report, url: reports_path do |f| %>
+  <div class="row">
+    <div class="col-8 m-2 p-2">
+      不適切な投稿を報告する<br>
+    </div>
+    <div class="col-8 m-2 p-2">
+      <%= f.text_area :introduction, class: "form-control" %>
+    </div>
+    <div class="col-8 m-2 p-2">
+      <%= f.submit "報告する", class: "btn btn-outline-danger btn-block" %>
+    </div>
+  <% end %>
+  </div>
+</div>

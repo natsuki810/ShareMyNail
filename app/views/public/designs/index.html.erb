@@ -23,9 +23,9 @@
       </div>
       <div class="col">
         ♥<%= design.favorites.count %>
-        コメント<%= design.comments.count %>
+        コメント<%= design.comments.count + design.comments.map { |comment| comment.replies.count }.sum %>
       </div>
-     
+
     </div>
     <% end %>
   </div>
