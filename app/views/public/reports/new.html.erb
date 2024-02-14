@@ -7,12 +7,17 @@
   <div class="row">
     <div class="h3">Report</div>
   </div>
-  <%= form_with model: @report, url: reports_path do |f| %>
+  <div>
+    <%= @type %>
+  </div>
+  <%= form_with url: design_reports_path(@design) do |f| %>
   <div class="row">
     <div class="col-8 m-2 p-2">
       不適切な投稿を報告する<br>
     </div>
     <div class="col-8 m-2 p-2">
+      <%= f.hidden_field :type, value: @type%>
+      <%= f.hidden_field :content_id, value: @id %>
       <%= f.text_area :introduction, class: "form-control" %>
     </div>
     <div class="col-8 m-2 p-2">

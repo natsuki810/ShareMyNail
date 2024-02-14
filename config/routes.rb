@@ -29,13 +29,16 @@ scope module: :public do
   get '/users/:user_id/favorites' => 'favorites#index', as: 'favorites'
   get '/users/confirm' => 'users#confirm'
   patch 'users/withdrawal' => 'users#withdrawal'
+  delete "designs/:design_id/replies/:id" => "comments/reply#destroy", as: "design_reply"
   resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create] do
-    resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :reports, only: [:new, :create]
+    resources :comments, only: [:create, :edit, :update, :destroy] 
     resource :favorites, only: [:create, :destroy]
+    
   end
-  resources :reports, only: [:new, :create]
+  
   namespace :comments do
-    resources :reply, only: [:create, :update, :destroy]
+    resources :reply, only: [:create, :update]
   end
 end
 

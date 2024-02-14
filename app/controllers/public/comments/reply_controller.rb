@@ -26,7 +26,7 @@ class Public::Comments::ReplyController < ApplicationController
 
   private
   def reply_params
-    params.require(:reply).permit(:reply, :comment_id).merge(comment_id: params[:comment_id])
+    params.require(:reply).permit(:reply, :comment_id).merge(comment_id: params[:reply][:comment_id])
   end
 
 end
