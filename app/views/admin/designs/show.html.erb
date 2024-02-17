@@ -7,27 +7,57 @@
   <div class="row">
     <div class="h3"><%= @design.name %></div>
   </div>
-  <div class="d-flex flex-column">
-    <div class="col-6">
-      <%= image_tag @design.image, width: "100%", height: "100%" %>
-    </div>
-    <div class="col-6">
-      user:<%= @design.user.name %>
-    </div>
-    <div class="col-6">
-      introduction:<%= @design.introduction %>
-    </div>
-    <div class="col-6">
-      color:<%= @design.color.name %>
-    </div>
-    <div class="col-6">
-          <% if @design.is_active %>
+  <div class="row">
+    <div class="d-flex flex-column">
+      <div class="col-6 my-2">
+        <%= image_tag @design.image, width: "100%", height: "100%" %>
+      </div>
+      <div class="m-1">
+        user:<%= @design.user.name %>
+      </div>
+      <div class="m-1">
+        introduction:<%= @design.introduction %>
+      </div>
+      <div class="m-1">
+        color:<%= @design.color.name %>
+      </div>
+      <div class="m-1">
+        <% if @design.is_active %>
           <span class="font-weight-bold text-success">公開</span>
         <% else %>
           <span class="font-weight-bold text-secondary">非公開</span>
         <% end %>
+      </div>
     </div>
-  </div>
+    <div class="flex-column">
+      <div class="col">
+        いいね♥<%= @design.favorites.count %>
+      </div>
+      <div class="col">
+        コメント＊<%= @total_comment %>
+      </div>
+      <% @design.comments.each do |comment| %>
+      <div class="col m-1 border border-2">
+        <div class="font-weight-bold"><%= comment.user.name %></div>
+        <div class="col mx-1"><%= comment.comment %></div>
+        <div class="col m-1">
+            <%= link_to "コメント削除", admin_design_comment_path(@design, comment), method: :delete, class: "text-danger" %>
+        </div>
+        <div class="col m-1 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
+      </div>
+        <% comment.replies.each do |reply| %>
+        <div class="col mx-4 border border-2">
+          <div class="font-weight-bold"><%= reply.user.name %></div>
+          <div class="col mx-1"><%= reply.reply %></div>
+          <div class="col m-1">
+            <%= link_to "返信削除", admin_comment_reply_path(comment, reply), method: :delete, class: "text-danger" %>
+          </div>
+          <div class="col m-1 text-right"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
+        </div>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
   <div class="row">
     <div class="col-3 my-2">
       <%= link_to "Designs All >>", admin_designs_path, class: "btn btn-outline-primary btn-block" %>

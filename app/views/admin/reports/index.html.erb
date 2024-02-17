@@ -1,34 +1,38 @@
 <div class="bg-pink pl-3">
   <%= link_to "Home", admin_top_path %> >
-  Reports All
+  <%= link_to "Reports All", admin_reports_path %> %
+  Report Comments
 </div>
 <div class="container">
   <div class="row">
     <div class="h3">Reports All</div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-2">
       <div class="h4">報告日</div>
     </div>
-    <div class="col">
+    <div class="col-2">
+      <div class="h4">報告ユーザー</div>
+    </div>
+    <div class="col-5">
       <div class="h4">報告内容</div>
     </div>
-    <div class="col">
+    <div class="col-3">
       <div class="h4">報告箇所</div>
     </div>
   </div>
   <% @report.each do |report| %>
   <div class="row">
-    <div class="col my-2 border">
+    <div class="col-2 my-2 border">
       <%= report.created_at.strftime('%Y/%m/%d') %>
-      <div class="col">
-        <%= report.status %>
-      </div>
     </div>
-    <div class="col my-2 border">
+    <div class="col-2 my-2 border">
+      <%= report.user.name %>
+    </div>
+    <div class="col-5 my-2 border">
       <%= report.introduction %>
     </div>
-    <div class="col my-2 border">
+    <div class="col-3 my-2 border">
       <%= target_link(report) %>
     </div>
   </div>

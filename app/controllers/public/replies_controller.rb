@@ -2,7 +2,7 @@ class Public::RepliesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @comment = Comment.find(params[:reply][:comment_id])
+    @comment = Comment.find(params[:comment_id])
     @reply = Reply.new(reply_params)
     @reply.user_id = current_user.id
     if @reply.save
@@ -14,7 +14,7 @@ class Public::RepliesController < ApplicationController
 
   def update
     @reply = Reply.find(params[:id])
-    @comment = Comment.find(params[:reply][:comment_id])
+    @comment = Comment.find(params[:comment_id])
     @reply.update(reply_params)
     redirect_to design_path(@comment.design.id)
   end

@@ -9,14 +9,20 @@ Rails.application.routes.draw do
 
 namespace :admin do
   get '/top' => 'homes#top', as: 'top'
-  resources :designs, only: [:index, :show, :edit, :update, :destroy]
+  resources :designs, only: [:index, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:index, :destroy]
+  end
+  resources :comments do
+    resources :replies, only: [:index, :destroy]
+  end
+  resources :reports, only: [:index, :update]
   resources :users, only: [:index, :show, :edit, :update]
   get '/users/:id/comments' => 'users#comments'
   get '/users/:id/designs' => 'users#designs', as: "users_designs"
   resources :colors, only: [:new, :index, :create, :destroy]
-  resources :comments, only: [:index, :destroy]
-  resources :reports, only: [:index, :update]
-  resources :replies, only: [:index, :update]
+  get '/reports/:reports_id/comments/:id' => 'reports#comments'
+  get '/reports/:reports_id/replies/:id' => 'reports#replies'
+  get 'r/reports/:reports_id/designs/:id' => 'reports#designs'
 end
 
 scope module: :public do
@@ -30,7 +36,7 @@ scope module: :public do
   get '/users/:user_id/favorites' => 'favorites#index', as: 'favorites'
   get '/users/confirm' => 'users#confirm'
   patch 'users/withdrawal' => 'users#withdrawal'
-  delete "designs/:design_id/replies/:id" => "comments/reply#destroy", as: "design_reply"
+  delete "designs/:design_id/replies/:id" => "comments#reply#destroy", as: "design_reply"
   resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create] do
     resources :reports, only: [:new, :create]
     resources :comments, only: [:create, :update, :destroy]

@@ -8,6 +8,13 @@ class Admin::DesignsController < ApplicationController
   def show
     @design = Design.find(params[:id])
     @color = Color.all
+    @comment = Comment.where(design_id: @design.id)
+    @reply = Reply.new
+    reply_count = 0
+    @design.comments.each do |comment|
+      reply_count = reply_count + comment.replies.count
+    end
+    @total_comment = reply_count + @design.comments.count
   end
   
   def edit
