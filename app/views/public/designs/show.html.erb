@@ -31,7 +31,9 @@
       </div>
       <% end %>
       <div class="m-1">
-        <%= link_to "報告する", new_design_report_path(@design,content_id: @design.id, type: "design"), class: "text-danger" %>
+        <% if @design.user_id != current_user.id %>
+        <%= link_to "報告", new_design_report_path(@design, content_id: @design.id, type: "design"), class: "text-danger" %>
+      　<% end %>
       </div>
     </div>
     <div class="d-flex flex-column">
@@ -49,26 +51,36 @@
       </div>
       <% end %>
       <div class="m-1 text-primary">
-        <div class="" type="button" data-toggle="collapse" data-target="#commentForm">コメント<%= @total_comment %></div>
+        <div class="" type="button" data-toggle="collapse" data-target="#commentForm">コメント＊<%= @total_comment %></div>
         <div id="commentForm" class="collapse">
         <%= form_with model: @comment, url: design_comments_path(@design) do |f| %>
           <%= f.text_area :comment, placeholder: "コメント",  class: "form-control" %>
-          <%= f.submit "コメントする" %>
+          <%= f.submit "コメント" %>
         <% end %>
         </div>
       </div>
-        
+
       <% @design.comments.each do |comment| %>
         <div class="col p-1 border border-2">
           <div class="font-weight-bold"><%= comment.user.name %></div>
           <div class="col mx-1"><%= comment.comment %></div>
           <div class="col m-1">
             <% if comment.user == current_user %>
-            <%= link_to "コメント編集", design_comment_path(@design, comment), class: "text-success" %>
-            <%= link_to "コメント削除", design_comment_path(@design, comment), method: :delete, class: "text-secondary" %>
-            <%= link_to "報告する", new_design_report_path(@design,content_id: comment.id, type: "comment"), class: "text-danger" %>
+            <div class="m-1 text-success">
+              <div class="" type="button" data-toggle="collapse" data-target="#editForm">編集</div>
+              <div id="editForm" class="collapse">
+              <%= form_with model: comment, url: design_comment_path(@design, comment) do |f| %>
+                <%= f.text_area :comment, placeholder: "編集",  class: "form-control" %>
+                <%= f.submit "編集" %>
+              <% end %>
+              </div>
+            </div>
+              <%= link_to "削除", design_comment_path(@design, comment), method: :delete, class: "text-secondary" %>
             <% end %>
-          </div>
+            <% if @design.user_id != current_user.id %>
+              <%= link_to "報告", new_design_report_path(@design, content_id: comment.id, type: "comment"), class: "text-danger" %>
+            <% end %>
+            </div>
           <div class="col m-1 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
         </div>
           <% comment.replies.each do |reply| %>
@@ -76,9 +88,20 @@
             <div class="font-weight-bold"><%= reply.user.name %></div>
             <div class="col mx-1"><%= reply.reply %></div>
             <div class="col m-1">
-            <% if comment.user == current_user %>
-              <%= link_to "削除", design_reply_path(@design, reply.id), method: :delete %>
-              <%= link_to "報告する", new_design_report_path(@design,content_id: reply.id, type: "reply"), class: "text-danger" %>
+            <% if reply.user == current_user %>
+            <div class="m-1 text-success">
+              <div class="" type="button" data-toggle="collapse" data-target="#editreplyForm-<%= reply.id %>">編集</div>
+              <div id="editreplyForm-<%= reply.id %>" class="collapse">
+              <%= form_with model: reply, url: comment_reply_path(comment, reply) do |f| %>
+                <%= f.text_area :reply, placeholder: "編集",  class: "form-control" %>
+                <%= f.submit "編集" %>
+              <% end %>
+              </div>
+            </div>
+              <%= link_to "削除", comment_reply_path(comment, reply), method: :delete, class: "text-secondary" %>
+            <% end %>
+            <% if @design.user_id != current_user.id %>
+              <%= link_to "報告", new_design_report_path(@design, content_id: reply.id, type: "reply"), class: "text-danger" %>
             <% end %>
             </div>
             <div class="col m-1 text-right"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
@@ -87,10 +110,10 @@
         <div class="col text-primary text-right">
           <div class="" type="button" data-toggle="collapse" data-target="#replyForm-<%= comment.id %>">*返信する*</div>
           <div id="replyForm-<%= comment.id %>" class="collapse">
-          <%= form_with model: @reply, url: comments_reply_index_path do |f| %>
+          <%= form_with model: @reply, url: comment_replies_path(comment) do |f| %>
             <%= f.text_area :reply, placeholder: "返信", class: "form-control" %>
             <%= f.hidden_field :comment_id, value: comment.id %>
-            <%= f.submit "*返信する"%>
+            <%= f.submit "*返信する" %>
           <% end %>
           </div>
         </div>

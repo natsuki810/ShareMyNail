@@ -9,8 +9,8 @@ class Public::ReportsController < ApplicationController
   end
 
   def create
-    @design = Design.find(params[:design_id])
     @report = Report.new(report_params)
+    @design = Design.find(params[:design_id])
     @report.user_id = current_user.id
     if params[:type] == "design"
       @report.design_id = params[:content_id]

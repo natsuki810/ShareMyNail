@@ -42,7 +42,7 @@
       </div>
     </div>
   <div class="row">
-    <div class="h4">User's Design</div>
+    <div class="h4">User's Designs</div>
   </div>
   <div class="row">
     <% @designs.each do |design| %>
@@ -70,6 +70,18 @@
     <div class="col-3">
       <%= link_to "User's Designs AlL >>", admin_users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
+  </div>
+  <div class="row">
+    <div class="h4">User's Comments</div>
+  </div>
+  <% @user.comments.each do |comment| %>
+  <div class="row">
+    <div class="col-3 m-1 border">
+      <%= comment.comment %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
     <div class="col-3">
       <%= link_to "User's Comments AlL >>", admin_path, class: "btn btn-outline-primary btn-block" %>
     </div>

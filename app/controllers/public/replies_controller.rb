@@ -1,4 +1,4 @@
-class Public::Comments::ReplyController < ApplicationController
+class Public::RepliesController < ApplicationController
   before_action :authenticate_user!
 
   def create
@@ -14,19 +14,21 @@ class Public::Comments::ReplyController < ApplicationController
 
   def update
     @reply = Reply.find(params[:id])
-    @reply.update
+    @comment = Comment.find(params[:reply][:comment_id])
+    @reply.update(reply_params)
     redirect_to design_path(@comment.design.id)
   end
 
   def destroy
     @reply = Reply.find(params[:id])
+    @comment = Comment.find(params[:comment_id])
     @reply.destroy
-    redirect_to design_path(params[:design_id])
+    redirect_to design_path(@comment.design.id)
   end
 
   private
   def reply_params
-    params.require(:reply).permit(:reply, :comment_id).merge(comment_id: params[:reply][:comment_id])
+    params.require(:reply).permit(:reply, :comment_id)
   end
 
 end

@@ -16,6 +16,7 @@ namespace :admin do
   resources :colors, only: [:new, :index, :create, :destroy]
   resources :comments, only: [:index, :destroy]
   resources :reports, only: [:index, :update]
+  resources :replies, only: [:index, :update]
 end
 
 scope module: :public do
@@ -32,15 +33,12 @@ scope module: :public do
   delete "designs/:design_id/replies/:id" => "comments/reply#destroy", as: "design_reply"
   resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create] do
     resources :reports, only: [:new, :create]
-    resources :comments, only: [:create, :edit, :update, :destroy] 
+    resources :comments, only: [:create, :update, :destroy]
     resource :favorites, only: [:create, :destroy]
-    
-  end
-  
-  namespace :comments do
-    resources :reply, only: [:create, :update]
+end
+  resources :comments do
+    resources :replies, only: [:create, :update, :destroy]
   end
 end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

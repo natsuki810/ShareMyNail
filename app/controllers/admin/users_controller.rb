@@ -20,6 +20,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def designs
+    @user = User.find(params[:id])
     @designs = Design.where(user_id:params[:id]).order(created_at: :desc)
   end
 

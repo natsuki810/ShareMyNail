@@ -10,7 +10,8 @@ class Public::CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update
+    @design = Design.find(params[:design_id])
+    @comment.update(comment_params)
     redirect_to design_path(@design.id)
   end
 
