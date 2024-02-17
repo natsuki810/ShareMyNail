@@ -10,8 +10,15 @@
   <%= form_with url: design_reports_path(@design) do |f| %>
   <div class="row">
     <div class="col-8 m-2 p-2">
-      不適切な<%= @type %>を報告する<br>
+      <% if @type == "design" %>
+        不適切な デザイン を報告する
+      <% elsif @type == "comment" %>
+        不適切な コメント を報告する
+      <% else %>
+        不適切な コメント を報告する
+      <% end %>
     </div>
+  </div>
     <div class="col-8 m-2 p-2">
       <%= f.hidden_field :type, value: @type%>
       <%= f.hidden_field :content_id, value: @id %>
