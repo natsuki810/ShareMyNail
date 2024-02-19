@@ -1,0 +1,30 @@
+<div class="bg-pink pl-3">
+  <%= link_to "Home", admin_top_path %> >
+  Comments All
+</div>
+<div class="container">
+  <div class="row">
+    <div class="h3">Comments All</div>
+  </div>
+  <div class="flex-column">
+    <% @comment.each do |comment| %>
+    <div class="col-7 m-1 border border-2">
+      <%= comment.id %>
+      <div class="font-weight-bold"><%= comment.user.name %></div>
+      <div class="col mx-1"><%= comment.comment %></div>
+      <div class="col m-1">
+          <%= link_to "コメント削除", admin_design_comment_path(comment.design, comment), method: :delete, class: "text-danger" %>
+      </div>
+    </div>
+      <% comment.replies.each do |reply| %>
+      <div class="col-7 mx-4 border border-2">
+        <div class="font-weight-bold"><%= reply.user.name %></div>
+        <div class="col mx-1"><%= reply.reply %></div>
+        <div class="col m-1">
+          <%= link_to "返信削除", admin_comment_reply_path(comment, reply), method: :delete, class: "text-danger" %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

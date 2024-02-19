@@ -8,7 +8,7 @@
   </div>
   <div class="row">
     <% @designs.each do |design| %>
-    <div class="col-3 my-3">
+    <div class="col-3 my-5">
       <%= link_to design_path(design.id), class: "design-link" do %>
         <%= image_tag design.image, width: "80%", height: "80%" %>
       <% end %>
@@ -25,7 +25,6 @@
         ♥<%= design.favorites.count %>
         コメント<%= design.comments.count + design.comments.map { |comment| comment.replies.count }.sum %>
       </div>
-
     </div>
     <% end %>
   </div>

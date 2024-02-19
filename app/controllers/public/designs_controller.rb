@@ -7,7 +7,11 @@ class Public::DesignsController < ApplicationController
   def create
     @design = Design.new(design_params)
     @design.user_id = current_user.id
-    @design.is_active = !!params[:public]
+    if params["public"].present?
+      @design.is_active = true
+    else
+      @design.is_active = false
+    end
     if @design.save
        redirect_to design_path(@design)
     else

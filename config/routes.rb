@@ -12,17 +12,17 @@ namespace :admin do
   resources :designs, only: [:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:index, :destroy]
   end
+  delete 'comment/:comment_id' => 'comments#destroy', as: "comments_delete"
+  delete 'designs/:id/design_destroy' => 'designs#design_destroy', as: "design_destroy"
   resources :comments do
     resources :replies, only: [:index, :destroy]
   end
-  resources :reports, only: [:index, :update]
+  resources :reports, only: [:index, :show]
+  put 'reports/update/:id' => 'reports#update', as: "designs_reports"
   resources :users, only: [:index, :show, :edit, :update]
   get '/users/:id/comments' => 'users#comments'
   get '/users/:id/designs' => 'users#designs', as: "users_designs"
   resources :colors, only: [:new, :index, :create, :destroy]
-  get '/reports/:reports_id/comments/:id' => 'reports#comments'
-  get '/reports/:reports_id/replies/:id' => 'reports#replies'
-  get 'r/reports/:reports_id/designs/:id' => 'reports#designs'
 end
 
 scope module: :public do

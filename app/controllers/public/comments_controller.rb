@@ -20,7 +20,7 @@ class Public::CommentsController < ApplicationController
     @comment.destroy
     redirect_to design_path(params[:design_id])
   end
-  
+
   private
   def comment_params
     params.require(:comment).permit(:comment).merge(user_id: current_user.id, design_id: @design.id)
