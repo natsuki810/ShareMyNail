@@ -1,0 +1,42 @@
+<div class="bg-pink pl-3">
+  <%= link_to "Home", root_path %> >
+  <%= link_to "My Page",users_mypage_path %> >
+  Comments All
+</div>
+<div class="container">
+  <div class="row">
+    <div class="h3">Comments All</div>
+  </div>
+  <div class="row">
+    <% @comments.each do |comment| %>
+    <div class="col-7 mb-3 border border-2">
+      <%= comment.id %>
+      To:<%= link_to design_path(comment.design.id), class: "design-link" do %>
+      <%= comment.design.name %>
+      <% end %>
+      *<%= comment.design.user.name %>
+      <div class="col mx-1">From:<%= comment.user.name %></div>
+      <div class="col mx-1"><%= comment.comment %></div>
+      <div class="col m-1">
+          <%= link_to "コメント削除", design_comment_path(comment.design, comment), method: :delete, class: "text-danger" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @replies.each do |reply| %>
+    <div class="col-7 mb-3 border border-2">
+      <%= reply.id %>To:
+      <%= link_to design_path(reply.comment.design.id), class: "design-link" do %>
+      <%= reply.comment.design.name %>
+      <% end %>
+      *<%= reply.comment.design.user.name %>
+      <div class="col mx-1">From:<%= reply.user.name %></div>
+      <div class="col mx-1"><%= reply.reply %></div>
+      <div class="col m-1">
+        <%= link_to "返信削除", comment_reply_path(@comments, reply), method: :delete, class: "text-danger" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

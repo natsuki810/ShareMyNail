@@ -39,9 +39,13 @@ Home
         <div class="col m-1">報告箇所*<%= target_link(report) %></div>
         <div class="col m-1">報告者*　<%= report.user.name %></div>
       </div>
-
     <% end %>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col-3 my-3">
+      <%= link_to "Report All", admin_reports_path, class: "btn btn-outline-primary btn-block" %>
+    </div>
   </div>
   <div class="row">
     <div class="h4">New Comment</div>

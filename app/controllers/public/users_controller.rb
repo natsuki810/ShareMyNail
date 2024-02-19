@@ -4,14 +4,18 @@ class Public::UsersController < ApplicationController
   def show
     @user = current_user
     @designs = current_user.designs.order(created_at: :desc).limit(4)
+    @favorites = Favorite.order(created_at: :desc).limit(4)
   end
 
   def designs
-    if params[:id] == current_user.id.to_s
-       @designs = Design.where(user_id:params[:id]).order(created_at: :desc)
-    else
-       @designs = Design.where(user_id:params[:id]).order(created_at: :desc).where(is_active: true)
-    end
+    @user = current_user
+    @designs = @user.designs.order(created_at: :desc)
+  end
+
+  def comments
+    @user = current_user
+    @comments = @user.comments.order(created_at: :desc)
+    @replies = @user.replies.order(created_at: :desc)
   end
 
   def edit

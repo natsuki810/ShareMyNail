@@ -22,7 +22,7 @@ class Public::RepliesController < ApplicationController
   def destroy
     @reply = Reply.find(params[:id])
     @comment = Comment.find(params[:comment_id])
-    @reply.destroy
+    # @reply.destroy
     redirect_to design_path(@comment.design.id)
   end
 
