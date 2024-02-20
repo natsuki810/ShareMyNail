@@ -8,6 +8,10 @@
   </div>
   <div class="row">
     <div class="col-2">
+      <div class="h4">No.</div>
+      <div class="col mb-5"><%= @report.id %></div>
+    </div>
+    <div class="col-2">
       <div class="h4">報告日</div>
       <div class="col mb-5"><%= @report.created_at.strftime('%Y/%m/%d') %></div>
     </div>
@@ -22,7 +26,7 @@
   </div>
     <% if @report.design.present? %>
     <div class="row">
-      <div class="h4"><%= @report.design.name %></div>
+      <div class="h5"><%= @report.design.name %></div>
     </div>
     <div class="row">
       <div class="col-2 my-3">投稿者</div>
@@ -54,14 +58,14 @@
     </div>
     <div class="row">
       <div class="col-2 my-3">コメント</div>
-      <div class="col-2 my-3 font-weight-bold"><%= @report.comment.comment %></div>
+      <div class="col-2 my-3 font-weight-bold"><%= @report.comment.content %></div>
     </div>
     <div class="row">
       <div class="col-5 my-3">
         <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put,class: "btn btn-outline-success btn-block" %>
       </div>
       <div class="col-5 my-3">
-        <%= link_to "削除するccc", admin_comments_delete_path(@comment.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+        <%= link_to "削除するccc", admin_comments_destroy_path(@comment.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
       </div>
     </div>
     <% elsif @report.reply.present? %>
@@ -74,7 +78,7 @@
     </div>
     <div class="row">
       <div class="col-2 my-3">コメント返信</div>
-      <div class="col-2 my-3 font-weight-bold"><%= @report.reply.reply %></div>
+      <div class="col-2 my-3 font-weight-bold"><%= @report.reply.content %></div>
     </div>
     <div class="row">
       <div class="col-5 my-3">

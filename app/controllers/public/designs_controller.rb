@@ -27,8 +27,9 @@ class Public::DesignsController < ApplicationController
   def show
     @design = Design.find(params[:id])
     @color = Color.all
-    @comment = Comment.where(design_id: @design.id)
+    @comment = Comment.order(created_at: :desc).where(design_id: @design.id).limit(2)
     @reply = Reply.new
+    @reply = Reply.order(created_at: :desc).limit(2)
     # @total_comment = @design.comments.map {|comment| comment.replies.count}.sum + @design.comments.count
     reply_count = 0
     @design.comments.each do |comment|

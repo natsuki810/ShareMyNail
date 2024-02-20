@@ -3,5 +3,7 @@ class Admin::HomesController < ApplicationController
   def top
     @designs = Design.where(is_active: true).order(created_at: :desc).limit(4)
     @reports = Report.where(status: false).order(created_at: :desc).limit(4)
+    @comments = Comment.order(created_at: :desc).limit(4)
+    @replies = Reply.order(created_at: :desc).limit(4)
   end
 end

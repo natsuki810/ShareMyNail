@@ -22,13 +22,19 @@ class Public::RepliesController < ApplicationController
   def destroy
     @reply = Reply.find(params[:id])
     @comment = Comment.find(params[:comment_id])
-    # @reply.destroy
+    @reply.destroy
     redirect_to design_path(@comment.design.id)
+  end
+
+  def replies_destroy
+    @reply = Reply.find(params[:id])
+    @reply.destroy
+    redirect_to users_comments_path
   end
 
   private
   def reply_params
-    params.require(:reply).permit(:reply, :comment_id)
+    params.require(:reply).permit(:content, :comment_id)
   end
 
 end

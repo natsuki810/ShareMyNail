@@ -61,8 +61,7 @@ ActiveRecord::Schema.define(version: 2024_02_14_125251) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "design_id", null: false
-    t.integer "master_id"
-    t.text "comment", null: false
+    t.text "content", null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,7 +89,7 @@ ActiveRecord::Schema.define(version: 2024_02_14_125251) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.integer "comment_id", null: false
-    t.text "reply", null: false
+    t.text "content", null: false
     t.boolean "is_active", default: true, null: false
   end
 

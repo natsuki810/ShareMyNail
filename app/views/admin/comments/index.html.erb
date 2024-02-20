@@ -6,25 +6,42 @@
   <div class="row">
     <div class="h3">Comments All</div>
   </div>
-  <div class="flex-column">
+  <div class="row">
     <% @comment.each do |comment| %>
-    <div class="col-7 m-1 border border-2">
+    <div class="col-7 m-2 border rounded">
       <%= comment.id %>
-      <div class="font-weight-bold"><%= comment.user.name %></div>
-      <div class="col mx-1"><%= comment.comment %></div>
+      <div class="col mx-1"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="col mx-1">
+        To:<%= comment.design.user.name %>
+        *<%= link_to admin_design_path(comment.design.id), class: "design-link" do %>
+        <%= comment.design.name %>
+        <% end %>
+      </div>
+      <div class="col mx-1">From:<%= comment.user.name %></div>
+      <div class="col m-3"><%= comment.content %></div>
       <div class="col m-1">
-          <%= link_to "コメント削除", admin_design_comment_path(comment.design, comment), method: :delete, class: "text-danger" %>
+          <%= link_to "コメント削除", admin_comments_destroy_path(comment), method: :delete, class: "text-danger" %>
       </div>
     </div>
-      <% comment.replies.each do |reply| %>
-      <div class="col-7 mx-4 border border-2">
-        <div class="font-weight-bold"><%= reply.user.name %></div>
-        <div class="col mx-1"><%= reply.reply %></div>
-        <div class="col m-1">
-          <%= link_to "返信削除", admin_comment_reply_path(comment, reply), method: :delete, class: "text-danger" %>
-        </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @replies.each do |reply| %>
+    <div class="col-7 m-2 border rounded">
+      <%= reply.id %>
+      <div class="col mx-1"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="col mx-1">
+        To:<%= reply.comment.design.user.name %>
+        *<%= link_to design_path(reply.comment.design.id), class: "design-link" do %>
+        <%= reply.comment.design.name %>
+        <% end %>
       </div>
-      <% end %>
+      <div class="col mx-1">From:<%= reply.user.name %></div>
+      <div class="col m-3"><%= reply.content %></div>
+      <div class="col m-1">
+        <%= link_to "返信削除", admin_comment_reply_path(@comment, reply), method: :delete, class: "text-danger" %>
+      </div>
+    </div>
     <% end %>
   </div>
 </div>

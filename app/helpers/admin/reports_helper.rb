@@ -1,11 +1,11 @@
 module Admin::ReportsHelper
   def target_link(report)
     if report.design.present?
-      link_to "デザイン", admin_report_path(report.design.id)
+      link_to "デザイン", admin_report_path(report.id)
     elsif report.comment.present?
-      link_to "コメント", admin_report_path(report.comment.id)
+      link_to "コメント", admin_report_path(report.id)
     elsif report.reply.present?
-      link_to "返信", admin_report_path(report.reply.id)
+      link_to "返信", admin_report_path(report.id)
     else
       "削除済"
     end

@@ -4,6 +4,8 @@ class Public::CommentsController < ApplicationController
   def create
     @design = Design.find(params[:design_id])
     @comment = Comment.new(comment_params)
+    @comment.design_id = @design.id
+    @comment.user_id = current_user.id
     @comment.save
     redirect_to design_path(@design.id)
   end
@@ -21,9 +23,15 @@ class Public::CommentsController < ApplicationController
     redirect_to design_path(params[:design_id])
   end
 
+  def comments_destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to users_comments_path
+  end
+
   private
   def comment_params
-    params.require(:comment).permit(:comment).merge(user_id: current_user.id, design_id: @design.id)
+    params.require(:comment).permit(:content)
   end
 
 end

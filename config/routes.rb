@@ -9,14 +9,12 @@ Rails.application.routes.draw do
 
 namespace :admin do
   get '/top' => 'homes#top', as: 'top'
-  resources :designs, only: [:index, :show, :edit, :update, :destroy] do
-    resources :comments, only: [:index, :destroy]
-  end
-  delete 'comment/:comment_id' => 'comments#destroy', as: "comments_delete"
+  resources :designs, only: [:index, :show, :edit, :update, :destroy]
   delete 'designs/:id/design_destroy' => 'designs#design_destroy', as: "design_destroy"
-  resources :comments do
+  resources :comments, only: [:index, :destroy] do
     resources :replies, only: [:index, :destroy]
   end
+  delete 'comments/:id/comment_destroy' => 'comments#comment_destroy', as: "comments_destroy"
   resources :reports, only: [:index, :show]
   put 'reports/update/:id' => 'reports#update', as: "designs_reports"
   resources :users, only: [:index, :show, :edit, :update]
@@ -45,6 +43,8 @@ end
   resources :comments do
     resources :replies, only: [:create, :update, :destroy]
   end
+  delete 'comments/:id/comments_destroy' => 'comments#comments_destroy', as: "comments_destroy"
+  delete 'replies/:id/replies_destroy' => 'replies#replies_destroy', as: "replies_destroy"
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
