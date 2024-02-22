@@ -21,15 +21,17 @@ class Public::DesignsController < ApplicationController
 
   def index
     @design = Design.new
-    @designs = Design.order(created_at: :desc).where(is_active: true)
+    @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(4)
+    @design_ranks = Design.find(Favorite.group(:design_id).order('count(design_id) desc').limit(3).pluck(:design_id))
   end
 
   def show
     @design = Design.find(params[:id])
     @color = Color.all
-    @comment = Comment.order(created_at: :desc).where(design_id: @design.id).limit(2)
+    @comments = @design.comments.order(created_at: :desc).page(params[:page]).per(4)
+    @comment = Comment.where(design_id: @design.id)
     @reply = Reply.new
-    @reply = Reply.order(created_at: :desc).limit(2)
+    @reply = Reply.order(created_at: :desc)
     # @total_comment = @design.comments.map {|comment| comment.replies.count}.sum + @design.comments.count
     reply_count = 0
     @design.comments.each do |comment|

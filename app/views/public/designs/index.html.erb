@@ -28,4 +28,27 @@
     </div>
     <% end %>
   </div>
+  <div class="row">
+    <div class="h3">Designs Ranking</div>
+  </div>
+  <div class="row">
+    <% @design_ranks.each do |rank| %>
+    <div class="col">
+      <%= link_to design_path(rank), class: "design-link" do %>
+        <%= image_tag rank.image, width: "80%", height: "80%" %>
+      <% end %>
+      <div class="col">
+        ♥<%= rank.favorites.count %>
+        コメント<%= rank.comments.count + rank.comments.map { |comment| comment.replies.count }.sum %>
+      </div>
+      <div class="col">
+        design:<%= rank.name %>
+      </div>
+      <div class="col">
+        user:<%= rank.user.name %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <%= paginate @designs %>
 </div>

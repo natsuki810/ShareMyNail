@@ -21,3 +21,21 @@
  padding: 0em 0.3em 0em 0.3em;
  background: linear-gradient(transparent 50%, #ffeaff 50%);
 }
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.pagination {
+  justify-content: center;
+}

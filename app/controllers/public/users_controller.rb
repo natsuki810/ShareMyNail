@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
   end
 
   def designs
-    @user = current_user
+    @user = User.find(params[:id])
     @designs = @user.designs.order(created_at: :desc)
   end
 
