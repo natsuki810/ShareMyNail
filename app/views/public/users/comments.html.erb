@@ -1,7 +1,11 @@
 <div class="bg-pink pl-3">
-  <%= link_to "Home", root_path %> >
-  <%= link_to "My Page",users_mypage_path %> >
-  Comments All
+  <div class="row">
+    <div class="col m-2">
+      <%= link_to "Home", root_path %> >
+      <%= link_to "My Page",users_mypage_path %> >
+      Comments All
+    </div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
@@ -10,7 +14,6 @@
   <div class="row">
     <% @comments.each do |comment| %>
     <div class="col-7 mb-3 border border-2">
-      <%= comment.id %>
       <div class="col mx-1"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
       <div class="col mx-1">
          To:<%= comment.design.user.name %>

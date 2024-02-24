@@ -1,9 +1,9 @@
 @use '~bootstrap/scss/bootstrap';
 
 .bg-pink {
-  background-color: #ffcce5;
+  background-color: #ffd1ff;
   height: 3em;
-  line-height: 3em;
+  line-height: 2em;
 }
 
 .h3 {
@@ -22,20 +22,24 @@
  background: linear-gradient(transparent 50%, #ffeaff 50%);
 }
 
+.design_favorites_ranking {
+  background-color: #fff9ff;
+}
+
 .pagination>li>a {
-  border: none;
-  color: #696969;
+  color: #000000;
 }
 
 .pagination>.active>a {
-  background: #93c9ff;
-  border-radius: 15px;
+  background: #f9f9ff;
 }
 
 .pagination>li>a:hover {
-  border-radius: 15px;
+  background: #f4f4ff;
+  color: #ffffff;
 }
 
 .pagination {
   justify-content: center;
 }
+

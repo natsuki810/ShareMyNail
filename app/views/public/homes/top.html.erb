@@ -1,5 +1,9 @@
 <div class="bg-pink pl-3">
-  Home
+  <div class="row">
+    <div class="col m-2">
+        Home
+    </div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
@@ -11,26 +15,49 @@
     <div class="col p-2">
       <span class="h5">ShareMyNail</span>は<br>
       セルフネイラーのためのデザイン検索サイトです。<br>
+      お気に入りのデザインを見つけたり<br>
+      あなたの素敵なネイルをシェアしてください♪
     </div>
   </div>
   <div class="row">
-    <div class="h4">New Design</div>
-  </div>
-  <div class="row">
-    <% @designs.each do |design| %>
-    <div class="col-3 my-3">
-      <%= link_to design_path(design.id), class: "design-link" do %>
-        <%= image_tag design.image, width: "70%", height: "70%" %>
-      <% end %>
-      <div class="my-1">
-        <%= design.name %>
+    <div class="col-9">
+      <div class="row">
+        <div class="h4 my-1">New Design</div>
       </div>
-      <div class="my-1">
-        <%= design.user.name %>
+      <div class="row">
+        <% @designs.each do |design| %>
+        <div class="col-3 my-2">
+          <%= link_to design_path(design.id), class: "design-link" do %>
+            <%= image_tag design.image.variant(resize: '200x200') %>
+          <% end %>
+          <div class="col font-weight-bold">
+            <%= design.name %>
+          </div>
+          <div class="col">
+            <i class="fa-regular fa-user"></i>
+            <%= design.user.name %>
+          </div>
+          <div class="col">
+            <i class="fa-solid fa-heart"></i>
+            <%= design.favorites.count %>
+            <i class="fa-regular fa-comment"></i>
+            <%= design.comments.count + design.comments.map { |comment| comment.replies.count }.sum %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-3 my-2">
+          <%= link_to "デザインを探す", designs_path, class: "btn btn-outline-primary btn-block" %>
+        </div>
+        <div class="col-3 my-2">
+          <%= link_to "デザインを投稿する", new_design_path, class: 'btn btn-outline-primary btn-block' %>
+        </div>
       </div>
     </div>
-    <% end %>
+    <div class="col-3">
+      <%=render 'public/designs/rankings', design_ranks: @design_ranks %>
+    </div>
   </div>
 </div>
-
 

@@ -21,8 +21,12 @@ class Public::DesignsController < ApplicationController
 
   def index
     @design = Design.new
-    @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(4)
     @design_ranks = Design.find(Favorite.group(:design_id).order('count(design_id) desc').limit(3).pluck(:design_id))
+    if params[:name]
+      @designs = Design.where("name LIKE?", '%' + params[:name] + '%').page.per(4).order(created_at: :desc).where(is_active: true)
+    else
+      @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(4)
+    end
   end
 
   def show
