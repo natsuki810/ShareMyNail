@@ -25,14 +25,14 @@ class Public::DesignsController < ApplicationController
     if params[:name]
       @designs = Design.where("name LIKE?", '%' + params[:name] + '%').page.per(4).order(created_at: :desc).where(is_active: true)
     else
-      @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(4)
+      @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(8)
     end
   end
 
   def show
     @design = Design.find(params[:id])
     @color = Color.all
-    @comments = @design.comments.order(created_at: :desc).page(params[:page]).per(4)
+    @comments = @design.comments.order(created_at: :desc).page(params[:page]).per(3)
     @comment = Comment.where(design_id: @design.id)
     @reply = Reply.new
     @reply = Reply.order(created_at: :desc)

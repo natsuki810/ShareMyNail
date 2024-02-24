@@ -2,8 +2,12 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @comment = Comment.order(created_at: :desc)
-    @replies = Reply.order(created_at: :desc)
+    @comments = Comment.all
+    @Reply = Reply.all
+    @array = []
+    @array.push(@comments).push(@Reply).flatten!
+    @array = @array.sort {|a,b| a.created_at <=> b.created_at}
+    @array = @array.reverse
   end
 
   def destroy
@@ -11,7 +15,7 @@ class Admin::CommentsController < ApplicationController
     @comment.destroy
     redirect_to admin_design_path(@comment.design_id)
   end
-  
+
   def comment_destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

@@ -7,7 +7,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="h3">Admin top</div>
+    <div class="h3">Admin Top</div>
   </div>
   <div class="row">
     <div class="h4">New Design</div>
@@ -22,12 +22,15 @@
         <%= design.name %>
       </div>
       <div class="col">
-        <i class="fa-solid fa-user"></i>
-        <%= design.user.name %>
+        <i class="fa-regular fa-user"></i>
+        <%= link_to admin_users_designs_path(design.user.id), class: "user_design-link" do %>
+          <%= design.user.name %>
+        <% end %>
       </div>
       <div class="col">
-        ♥<%= design.favorites.count %>
-        <i class="fa-solid fa-comment"></i>
+        <i class="fa-solid fa-heart"></i>
+        <%= design.favorites.count %>
+        <i class="fa-regular fa-comment"></i>
         <%= design.comments.count + design.comments.map { |comment| comment.replies.count }.sum %>
       </div>
     </div>
@@ -50,11 +53,15 @@
           <%= report.created_at.strftime('%Y/%m/%d') %>
         </div>
         <div class="col m-1">
-          <i class="fa-solid fa-comment"></i>
+          <i class="fa-solid fa-triangle-exclamation"></i>
           <%= target_link(report) %>
         </div>
         <div class="col m-1">
-          <i class="fa-solid fa-user"></i>
+          <i class="fa-solid fa-envelope-circle-check"></i>
+          <%= report.introduction %>
+        </div>
+        <div class="col m-1">
+          <i class="fa-regular fa-user"></i>
           <%= report.user.name %>
         </div>
       </div>
@@ -77,11 +84,11 @@
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
       <div class="col m-1">
-        <i class="fa-solid fa-comment"></i>
+        <i class="fa-regular fa-comment"></i>
         <%= comment.content %>
       </div>
       <div class="col m-1">
-        <i class="fa-solid fa-user"></i>
+        <i class="fa-regular fa-user"></i>
         <%= comment.user.name %>
       </div>
       <div class="col m-1 text-right">

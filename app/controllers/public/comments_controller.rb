@@ -23,6 +23,12 @@ class Public::CommentsController < ApplicationController
     redirect_to design_path(params[:design_id])
   end
 
+  def comments_update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    redirect_to users_comments_path
+  end
+
   def comments_destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

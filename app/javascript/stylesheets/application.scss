@@ -27,16 +27,18 @@
 }
 
 .pagination>li>a {
-  color: #000000;
+  border: none;
+  color: #ff93ff;
 }
 
 .pagination>.active>a {
-  background: #f9f9ff;
+  background: #ff93ff;
+  border-radius: 15px;
 }
 
 .pagination>li>a:hover {
-  background: #f4f4ff;
-  color: #ffffff;
+  background: #ff93ff;
+  border-radius: 15px;
 }
 
 .pagination {

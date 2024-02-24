@@ -13,7 +13,9 @@
     </div>
     <div class="col">
       <i class="fa-regular fa-user"></i>
-      <%= rank.user.name %>
+      <%= link_to users_designs_path(rank.user.id), class: "user_design-link" do %>
+        <%= rank.user.name %>
+      <% end %>
     </div>
     <div class="col">
       <i class="fa-solid fa-heart"></i>

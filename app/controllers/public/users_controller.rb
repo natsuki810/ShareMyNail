@@ -16,6 +16,11 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @comments = @user.comments.order(created_at: :desc)
     @replies = @user.replies.order(created_at: :desc)
+
+    @array = []
+    @array.push(@comments).push(@replies).flatten!
+    @array = @array.sort {|a,b| a.created_at <=> b.created_at}
+    @array = @array.reverse
   end
 
   def edit

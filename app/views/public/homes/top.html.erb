@@ -35,7 +35,9 @@
           </div>
           <div class="col">
             <i class="fa-regular fa-user"></i>
-            <%= design.user.name %>
+            <%= link_to users_designs_path(design.user.id), class: "user_design-link" do %>
+              <%= design.user.name %>
+            <% end %>
           </div>
           <div class="col">
             <i class="fa-solid fa-heart"></i>

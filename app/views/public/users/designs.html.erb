@@ -1,36 +1,51 @@
 <div class="bg-pink pl-3">
   <div class="row">
-    <div class="col m-2">
-      <%= link_to "Home", root_path %> >
-      User's Design All
-    </div>
+    <% if @user == current_user %>
+      <div class="col m-2">
+        <%= link_to "Home", root_path %> >
+        <%= link_to "My Page",users_mypage_path %> >
+        My Designs All
+      </div>
+    <% else %>
+      <div class="col m-2">
+        <%= link_to "Home", root_path %> >
+        User's Designs All
+      </div>
+    <% end %>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="h3">User's Designs All</div>
+    <% if @user == current_user %>
+      <div class="h3">My Designs All</div>
+    <% else %>
+      <div class="h3">User's Designs All</div>
+    <% end %>
   </div>
   <div class="row">
     <% @designs.each do |design| %>
     <div class="col-3 my-5">
       <%= link_to design_path(design.id), class: "design-link" do %>
-        <%= image_tag design.image, width: "80%", height: "80%" %>
+        <%= image_tag design.image.variant(resize: '200x200') %>
       <% end %>
-      <div class="col">
-        design:<%= design.name %>
+      <div class="col font-weight-bold">
+        <%= design.name %>
       </div>
       <div class="col">
-        color:<%= design.color.name %>
+        <i class="fa-regular fa-user"></i>
+        <%= design.user.name %>
       </div>
       <div class="col">
-        user:<%= design.user.name %>
+        <i class="fa-solid fa-palette"></i>
+        <%= design.color.name %>
       </div>
       <% if design.user_id == current_user.id %>
       <div class="col">
-        status:
           <% if design.is_active %>
+            <i class="fa-solid fa-unlock"></i>
             <span class="font-weight-bold text-success">公開</span>
           <% else %>
+            <i class="fa-solid fa-lock"></i>
             <span class="font-weight-bold text-secondary">非公開</span>
           <% end %>
       </div>

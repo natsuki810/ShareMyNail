@@ -26,6 +26,12 @@ class Public::RepliesController < ApplicationController
     redirect_to design_path(@comment.design.id)
   end
 
+  def replies_update
+    @reply = Reply.find(params[:id])
+    @reply.update(reply_params)
+    redirect_to users_comments_path
+  end
+
   def replies_destroy
     @reply = Reply.find(params[:id])
     @reply.destroy

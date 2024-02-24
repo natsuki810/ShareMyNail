@@ -14,6 +14,7 @@ namespace :admin do
   resources :comments, only: [:index, :destroy] do
     resources :replies, only: [:index, :destroy]
   end
+  delete 'replies/:id/replies_destroy' => 'replies#replies_destroy', as: "replies_destroy"
   delete 'comments/:id/comment_destroy' => 'comments#comment_destroy', as: "comments_destroy"
   resources :reports, only: [:index, :show]
   put 'reports/update/:id' => 'reports#update', as: "designs_reports"
@@ -43,7 +44,10 @@ end
   resources :comments do
     resources :replies, only: [:create, :update, :destroy]
   end
+
+  patch 'comments/:id/comments_update' => 'comments#comments_update', as: "comments_update"
   delete 'comments/:id/comments_destroy' => 'comments#comments_destroy', as: "comments_destroy"
+  patch 'replies/:id/replies_update' => 'replies#replies_update', as: "replies_update"
   delete 'replies/:id/replies_destroy' => 'replies#replies_destroy', as: "replies_destroy"
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

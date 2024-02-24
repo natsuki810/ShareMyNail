@@ -12,40 +12,85 @@
     <div class="h3">Comments All</div>
   </div>
   <div class="row">
-    <% @comments.each do |comment| %>
-    <div class="col-7 mb-3 border border-2">
-      <div class="col mx-1"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
-      <div class="col mx-1">
-         To:<%= comment.design.user.name %>
-        *<%= link_to design_path(comment.design.id), class: "design-link" do %>
-        <%= comment.design.name %>
-        <% end %>
+    <% @array.each do |comment| %>
+    <% if comment.instance_of?(Comment) %>
+    <div class="col-10 mb-3 border border-2">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div class="col small"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="row">
+        <div class="col-4 m-2 font-weight-bold">
+          <i class="fa-regular fa-file-lines"></i>
+          <%= link_to design_path(comment.design.id), class: "design-link" do %>
+            <%= comment.design.name %>
+          <% end %>
+        </div>
+        <div class="col-4 m-2">
+          <i class="fa-regular fa-user"></i>
+          <%= comment.design.user.name %>
+        </div>
       </div>
-      <div class="col mx-1">From:<%= comment.user.name %></div>
-      <div class="col m-3"><%= comment.content %></div>
-      <div class="col m-1">
+      <div class="col m-2">
+        <i class="fa-regular fa-comment"></i>
+        <%= comment.content %>
+      </div>
+      <div class="row">
+        <div class="col-8 m-1 text-right">
+          <div class="text-success" type="button" data-toggle="collapse" data-target="#editForm-<%= comment.id %>">
+            <i class="fa-regular fa-comment"></i>
+            コメント編集
+          </div>
+          <div id="editForm-<%= comment.id %>" class="collapse">
+            <%= form_with model: comment, url: comments_update_path(comment) do |f| %>
+              <%= f.text_area :content, placeholder: "編集",  class: "form-control" %>
+              <%= f.submit "編集" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-2 m-1 text-right">
           <%= link_to "コメント削除", comments_destroy_path(comment), method: :delete, class: "text-danger" %>
+        </div>
       </div>
     </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @replies.each do |reply| %>
-    <div class="col-7 mb-3 border border-2">
-      <%= reply.id %>
-      <div class="col mx-1"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
-      <div class="col mx-1">
-      To:<%= reply.comment.design.user.name %>
-      *<%= link_to design_path(reply.comment.design.id), class: "design-link" do %>
-      <%= reply.comment.design.name %>
-      <% end %>
+    <% else %>
+    <% reply = comment %>
+    <div class="col-10 mb-3 border border-2">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div class="col small"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="row">
+        <div class="col-4 m-2 font-weight-bold">
+          <i class="fa-regular fa-file-lines"></i>
+          <%= link_to design_path(reply.comment.design.id), class: "design-link" do %>
+            <%= reply.comment.design.name %>
+          <% end %>
+        </div>
+        <div class="col-4 m-2">
+          <i class="fa-regular fa-user"></i>
+          <%= reply.comment.design.user.name %>
+        </div>
       </div>
-      <div class="col mx-1">From:<%= reply.user.name %></div>
-      <div class="col m-3"><%= reply.content %></div>
-      <div class="col m-1">
-        <%= link_to "返信削除", replies_destroy_path(reply), method: :delete, class: "text-danger" %>
+      <div class="col m-2">
+        <i class="fa-solid fa-comment"></i>
+        <%= reply.content %>
+      </div>
+      <div class="row">
+        <div class="col-8 m-1 text-right">
+          <div class="text-success" type="button" data-toggle="collapse" data-target="#editForm-<%= reply.id %>">
+            <i class="fa-solid fa-comment"></i>
+            コメント編集
+          </div>
+          <div id="editForm-<%= reply.id %>" class="collapse">
+            <%= form_with model: reply, url: replies_update_path(reply) do |f| %>
+              <%= f.text_area :content, placeholder: "編集",  class: "form-control" %>
+              <%= f.submit "編集" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-2 m-1 text-right">
+          <%= link_to "コメント削除", replies_destroy_path(comment), method: :delete, class: "text-danger" %>
+        </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
+  <% end %>
   </div>
 </div>
