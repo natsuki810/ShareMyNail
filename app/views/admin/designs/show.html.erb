@@ -7,61 +7,11 @@
     </div>
   </div>
 </div>
+<%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
     <div class="h3"><%= @design.name %></div>
   </div>
-  <div class="row">
-    <div class="flex-column">
-      <div class="col-6 my-2">
-        <%= image_tag @design.image, width: "100%", height: "100%" %>
-      </div>
-      <div class="m-1">
-        user:<%= @design.user.name %>
-      </div>
-      <div class="m-1">
-        introduction:<%= @design.introduction %>
-      </div>
-      <div class="m-1">
-        color:<%= @design.color.name %>
-      </div>
-      <div class="m-1">
-        <% if @design.is_active %>
-          <span class="font-weight-bold text-success">公開</span>
-        <% else %>
-          <span class="font-weight-bold text-secondary">非公開</span>
-        <% end %>
-      </div>
-    </div>
-    <div class="flex-column">
-      <div class="col">
-        いいね♥<%= @design.favorites.count %>
-      </div>
-      <div class="col">
-        コメント＊<%= @total_comment %>
-      </div>
-      <% @design.comments.each do |comment| %>
-      <div class="col m-1 border border-2">
-        <div class="font-weight-bold"><%= comment.user.name %></div>
-        <div class="col mx-1"><%= comment.content %></div>
-        <div class="col m-1">
-            <%= link_to "コメント削除", admin_comment_path(comment), method: :delete, class: "text-danger" %>
-        </div>
-        <div class="col m-1 text-right"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
-      </div>
-        <% comment.replies.each do |reply| %>
-        <div class="col mx-4 border border-2">
-          <div class="font-weight-bold"><%= reply.user.name %></div>
-          <div class="col mx-1"><%= reply.content %></div>
-          <div class="col m-1">
-            <%= link_to "返信削除", admin_comment_reply_path(comment, reply), method: :delete, class: "text-danger" %>
-          </div>
-          <div class="col m-1 text-right"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
-        </div>
-        <% end %>
-      <% end %>
-      </div>
-    </div>
   <div class="row">
     <div class="col-3 my-2">
       <%= link_to "Designs All >>", admin_designs_path, class: "btn btn-outline-primary btn-block" %>
@@ -71,6 +21,96 @@
     </div>
     <div class="col-3 my-2">
       <%= link_to "Edit Design >>", edit_admin_design_path, class: "btn btn-outline-success btn-block" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 m-2">
+      <div class="col-6 my-2">
+        <%= image_tag @design.image.variant(resize: '400x400') %>
+      </div>
+      <div class="col m-1 font-weight-bold">
+        <i class="fa-regular fa-user"></i>
+        <%= @design.user.name %>
+      </div>
+      <div class="col m-1">
+        <i class="fa-regular fa-file-lines"></i>
+        <%= @design.introduction %>
+      </div>
+      <div class="col m-1">
+        <i class="fa-solid fa-palette"></i>
+        <%= @design.color.name %>
+      </div>
+      <div class="col m-1">
+        <% if @design.is_active %>
+          <i class="fa-solid fa-unlock"></i>
+          <span class="font-weight-bold text-success">公開</span>
+        <% else %>
+          <i class="fa-solid fa-lock"></i>
+          <span class="font-weight-bold text-secondary">非公開</span>
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="col-4 m-1">
+      <div class="row">
+        <% if @design.favorites.count > 0 %>
+        <div class="col m-1">
+          いいね
+          <i class="fa-solid fa-heart"></i>
+          <%= @design.favorites.count %>
+        </div>
+        <% else %>
+        <div class="col m-1">
+          いいね
+          <i class="fa-regular fa-heart"></i>
+          <%= @design.favorites.count %>
+        </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col m-1">
+          コメント
+          <i class="fa-regular fa-comment"></i>
+          <%= @total_comment %>
+        </div>
+      </div>
+      <% @design.comments.each do |comment| %>
+      <div class="col m-1 border border-2">
+        <div class="col small">
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </div>
+        <div class="col font-weight-bold">
+          <i class="fa-regular fa-user"></i>
+          <%= comment.user.name %>
+        </div>
+        <div class="col mx-1">
+          <i class="fa-regular fa-comment"></i>
+          <%= comment.content %>
+        </div>
+        <div class="col m-1">
+            <%= link_to "コメント削除", admin_comment_path(comment), method: :delete, class: "text-danger", data: { confirm: '本当に削除しますか？' } %>
+        </div>
+      </div>
+        <% comment.replies.each do |reply| %>
+        <div class="col mx-4 border border-2">
+          <div class="col small">
+            <%= reply.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div class="col font-weight-bold">
+            <i class="fa-regular fa-user"></i>
+            <%= reply.user.name %>
+          </div>
+          <div class="col mx-1">
+            <i class="fa-solid fa-comment"></i>
+            <%= reply.content %>
+          </div>
+          <div class="col m-1">
+            <%= link_to "返信削除", admin_comment_reply_path(comment, reply), method: :delete, class: "text-danger", data: { confirm: '本当に削除しますか？' } %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

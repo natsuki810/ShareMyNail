@@ -5,6 +5,7 @@
     </div>
   </div>
 </div>
+<%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
     <div class="h3">My Page</div>
@@ -62,8 +63,10 @@
       </div>
       <div class="col">
         <% if design.is_active %>
+          <i class="fa-solid fa-unlock"></i>
           <span class="font-weight-bold text-success">公開</span>
         <% else %>
+          <i class="fa-solid fa-lock"></i>
           <span class="font-weight-bold text-secondary">非公開</span>
         <% end %>
       </div>

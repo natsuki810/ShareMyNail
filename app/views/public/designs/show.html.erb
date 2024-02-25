@@ -7,6 +7,7 @@
     </div>
   </div>
 </div>
+<%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
     <div class="h3"><%= @design.name %></div>
@@ -39,7 +40,7 @@
       </div>
       <div class="col m-1">
         <i class="fa-regular fa-file-lines"></i>
-          <%= @design.introduction %>
+        <%= @design.introduction %>
       </div>
       <div class="col m-1">
         <i class="fa-solid fa-palette"></i>
@@ -92,11 +93,16 @@
           <%= @total_comment %>
         </div>
       </div>
-      <div id="commentForm" class="collapse">
-        <%= form_with model: @comment, url: design_comments_path(@design) do |f| %>
-        <%= f.text_area :content, placeholder: "コメント",  class: "form-control" %>
-        <%= f.submit "コメント" %>
-        <% end %>
+    </div>
+    <%= render "public/shared/flash", flash_message: flash[:notice_comment] %>
+    <div class="row">
+      <div class="col m-1">
+        <div id="commentForm" class="collapse">
+          <%= form_with model: @comment, url: design_comments_path(@design) do |f| %>
+          <%= f.text_area :content, placeholder: "コメント",  class: "form-control" %>
+          <%= f.submit "コメント" %>
+          <% end %>
+        </div>
       </div>
     </div>
 
@@ -120,15 +126,9 @@
             <div class="text-success" type="button" data-toggle="collapse" data-target="#editForm-<%= comment.id %>">
               編集
             </div>
-            <div id="editForm-<%= comment.id %>" class="collapse">
-            <%= form_with model: comment, url: design_comment_path(@design, comment) do |f| %>
-              <%= f.text_area :content, placeholder: "編集",  class: "form-control" %>
-              <%= f.submit "編集" %>
-            <% end %>
-            </div>
           </div>
           <div class="col-3">
-            <%= link_to "削除", design_comment_path(@design, comment), method: :delete, class: "text-secondary" %>
+            <%= link_to "削除", design_comment_path(@design, comment), method: :delete, class: "text-secondary", data: { confirm: '本当に削除しますか？' } %>
           </div>
           <% end %>
           <% if comment.user_id != current_user.id %>
@@ -142,6 +142,16 @@
             </div>
           </div>
           <% end %>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div id="editForm-<%= comment.id %>" class="collapse">
+            <%= form_with model: comment, url: design_comment_path(@design, comment) do |f| %>
+              <%= f.text_area :content, placeholder: "編集",  class: "form-control" %>
+              <%= f.submit "編集" %>
+            <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -162,16 +172,12 @@
           <% if reply.user == current_user %>
           <div class="row">
             <div class="col-3">
-            <div class="text-success" type="button" data-toggle="collapse" data-target="#editreplyForm-<%= reply.id %>">編集</div>
-            <div id="editreplyForm-<%= reply.id %>" class="collapse">
-            <%= form_with model: reply, url: comment_reply_path(comment, reply) do |f| %>
-              <%= f.text_area :content, placeholder: "編集",  class: "form-control" %>
-              <%= f.submit "編集" %>
-            <% end %>
+            <div class="text-success" type="button" data-toggle="collapse" data-target="#editreplyForm-<%= reply.id %>">
+              編集
             </div>
             </div>
             <div class="col-3">
-              <%= link_to "削除", comment_reply_path(comment, reply), method: :delete, class: "text-secondary" %>
+              <%= link_to "削除", comment_reply_path(comment, reply), method: :delete, class: "text-secondary", data: { confirm: '本当に削除しますか？' } %>
             </div>
           </div>
           <% end %>
@@ -179,6 +185,16 @@
             <i class="fa-solid fa-triangle-exclamation"></i>
             <%= link_to "報告", new_design_report_path(@design, content_id: reply.id, type: "reply"), class: "text-danger" %>
           <% end %>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div id="editreplyForm-<%= reply.id %>" class="collapse">
+              <%= form_with model: reply, url: comment_reply_path(comment, reply) do |f| %>
+              <%= f.text_area :content, placeholder: "編集",  class: "form-control" %>
+              <%= f.submit "編集" %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>

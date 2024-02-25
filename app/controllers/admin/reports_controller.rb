@@ -12,8 +12,13 @@ class Admin::ReportsController < ApplicationController
   def update
     @report = Report.find(params[:id])
     @report.status = true
-    @report.update(params.permit(:status))
-    redirect_to admin_reports_path
+    if @report.update(params.permit(:status))
+      flash[:notice] = "対応を完了しました"
+      redirect_to admin_reports_path
+    else
+      lash[:notice] = "対応済にできませんでした"
+      redirect_to admin_reports_path  
+    end
   end
   
   

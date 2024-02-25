@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_many :reports, dependent: :destroy
 
+  validates :name, presence: true
+
   def active_for_authentication?
     super && (is_active == true)
   end

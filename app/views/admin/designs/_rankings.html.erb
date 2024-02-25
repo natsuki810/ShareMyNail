@@ -1,0 +1,28 @@
+<div class="design_favorites_ranking">
+  <div class="row m-3">
+    <div class="h4">Designs Ranking</div>
+  </div>
+  <% design_ranks.each.with_index(1) do |rank, i| %>
+  <div class="col m-3">
+    <div class="h5">第<%= i %>位</div>
+    <%= link_to admin_design_path(rank), class: "design-link" do %>
+      <%= image_tag rank.image.variant(resize: '150x150') %>
+    <% end %>
+    <div class="col font-weight-bold">
+      <%= rank.name %>
+    </div>
+    <div class="col">
+      <i class="fa-regular fa-user"></i>
+      <%= link_to admin_users_designs_path(rank.user.id), class: "user_design-link" do %>
+        <%= rank.user.name %>
+      <% end %>
+    </div>
+    <div class="col">
+      <i class="fa-solid fa-heart"></i>
+      <%= rank.favorites.count %>
+      <i class="fa-regular fa-comment"></i>
+      <%= rank.comments.count + rank.comments.map { |comment| comment.replies.count }.sum %>
+    </div>
+  </div>
+<% end %>
+</div>

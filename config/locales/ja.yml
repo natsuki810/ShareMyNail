@@ -1,12 +1,20 @@
 ja:
   activerecord:
+    attributes:
+      design:
+        name: タイトル
+        introduction: デザイン説明
+        image: 画像
+      user:
+        name: user name
+        introduction: 自己紹介
     errors:
       models:
         design:
           attributes:
             name:
-              blank: "タイトルが空欄です。"
+              blank: "が空欄です。"
             introduction:
-              blank: "説明が空欄です。"
+              blank: "が空欄です。"
             image:
-              blank: "画像が空欄です。"
+              blank: "を選択してください。"

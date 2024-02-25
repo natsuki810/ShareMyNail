@@ -1,4 +1,4 @@
-<div class="bg-pink pl-3">
+<div class="bg-pink">
   <div class="row">
     <div class="col m-2">
       <%= link_to "Home", admin_top_path %> >
@@ -7,6 +7,7 @@
     </div>
   </div>
 </div>
+<%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
     <div class="h3">User's Page</div>
@@ -15,28 +16,42 @@
     <div class="h4">Profile</div>
   </div>
   <div class="row">
-    <div class="col-2 mb-2 py-2 font-weight-bold">use name</div>
+    <div class="col-2 mb-2 py-2 font-weight-bold">
+      <i class="fa-regular fa-user"></i>
+      use name
+    </div>
     <div class="col-4 mb-2 py-2 border rounded">
       <%= @user.name %>
     </div>
-    <div class="col-2 mb-2 py-2 font-weight-bold">mail address</div>
+    <div class="col-2 mb-2 py-2 font-weight-bold">
+      <i class="fa-regular fa-envelope"></i>
+      mail address
+    </div>
     <div class="col-4 mb-2 py-2 border rounded">
       <%= @user.email %>
     </div>
   </div>
   <div class="row">
-    <div class="col-2 my-2 py-3 font-weight-bold">Introduction</div>
+    <div class="col-2 my-2 py-3 font-weight-bold">
+      <i class="fa-regular fa-file-lines"></i>
+      Introduction
+    </div>
     <div class="col-6 my-2 py-3 border rounded">
       <%= @user.introduction %>
     </div>
   </div>
   <div class="row">
-    <div class="col-2 my-2 py-3 font-weight-bold">user status</div>
+    <div class="col-2 my-2 py-3 font-weight-bold">
+      <i class="fa-solid fa-key"></i>
+      user status
+    </div>
     <div class="col-2 my-2 py-3">
       <% if @user.is_active %>
-        <span class="font-weight-bold text-success">有効</span>
+        <i class="fa-solid fa-unlock"></i>
+        <span class="font-weight-bold text-success">公開</span>
       <% else %>
-        <span class="font-weight-bold text-secondary">退会</span>
+        <i class="fa-solid fa-lock"></i>
+        <span class="font-weight-bold text-secondary">非公開</span>
       <% end %>
     </div>
   </div>
@@ -50,20 +65,25 @@
   </div>
   <div class="row">
     <% @designs.each do |design| %>
-    <div class="col-3 my-5">
+    <div class="col-3 my-4">
       <%= link_to admin_design_path(design.id), class: "design-link" do %>
-        <%= image_tag design.image, width: "80%", height: "80%" %>
+        <%= image_tag design.image.variant(resize: '200x200') %>
       <% end %>
-      <div class="col">
+      <div class="col font-weight-bold">
         <%= design.name %>
       </div>
       <div class="col">
-        <%= design.user.name %>
+        <i class="fa-solid fa-heart"></i>
+        <%= design.favorites.count %>
+        <i class="fa-regular fa-comment"></i>
+        <%= design.comments.count %>
       </div>
       <div class="col">
         <% if design.is_active %>
+          <i class="fa-solid fa-unlock"></i>
           <span class="font-weight-bold text-success">公開</span>
         <% else %>
+          <i class="fa-solid fa-lock"></i>
           <span class="font-weight-bold text-secondary">非公開</span>
         <% end %>
       </div>
@@ -78,17 +98,51 @@
   <div class="row">
     <div class="h4">User's Comments</div>
   </div>
-  <% @user.comments.each do |comment| %>
   <div class="row">
-    <div class="col-3 m-1 border">
-      <%= comment.comment %>
+  <% @array.each do |comment| %>
+  <% if comment.instance_of?(Comment) %>
+    <div class="col-3 m-2 border rounded">
+      <div class="col m-1">
+        <i class="fa-solid fa-calendar-days"></i>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+      </div>
+      <div class="col m-1">
+        <i class="fa-regular fa-comment"></i>
+        <%= comment.content %>
+      </div>
+      <div class="col m-1">
+        <i class="fa-regular fa-user"></i>
+        <%= comment.user.name %>
+      </div>
+      <div class="col m-1 text-right">
+        <%= link_to "詳細", admin_design_path(comment.design.id) %>
+      </div>
     </div>
+  <% else %>
+    <% reply = comment %>
+    <div class="col-3 m-2 border rounded">
+      <div class="col m-1">
+        <i class="fa-solid fa-calendar-days"></i>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+      </div>
+      <div class="col m-1">
+        <i class="fa-regular fa-comment"></i>
+        <%= comment.content %>
+      </div>
+      <div class="col m-1">
+        <i class="fa-regular fa-user"></i>
+        <%= comment.user.name %>
+      </div>
+      <div class="col m-1 text-right">
+        <%= link_to "詳細", admin_design_path(reply.comment.design.id) %>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
   </div>
-  <% end %>
   <div class="row">
     <div class="col-3">
       <%= link_to "User's Comments AlL >>", admin_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
-</div>
 </div>

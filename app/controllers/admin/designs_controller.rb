@@ -2,7 +2,12 @@ class Admin::DesignsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @designs = Design.order(created_at: :desc)
+    @design_ranks = Design.find(Favorite.group(:design_id).order('count(design_id) desc').limit(3).pluck(:design_id))
+    if params[:name]
+      @designs = Design.where("name LIKE ?", '%' + params[:name] + '%').or(Design.where("introduction LIKE ?", '%' + params[:name] + '%')).page.per(4).order(created_at: :desc)
+    else
+      @designs = Design.order(created_at: :desc).page(params[:page]).per(8)
+    end
   end
 
   def show
@@ -23,8 +28,12 @@ class Admin::DesignsController < ApplicationController
 
   def update
     @design = Design.find(params[:id])
-    @design.update(design_params)
-    redirect_to admin_design_path(@design.id)
+    if @design.update(design_params)
+      flash[:notice] = "投稿に成功しました"
+      redirect_to admin_design_path(@design.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

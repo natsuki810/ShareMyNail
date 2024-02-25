@@ -13,9 +13,10 @@ class Public::DesignsController < ApplicationController
       @design.is_active = false
     end
     if @design.save
-       redirect_to design_path(@design)
+      flash[:notice] = "投稿に成功しました"
+      redirect_to design_path(@design)
     else
-       render :new
+      render :new
     end
   end
 
@@ -23,7 +24,7 @@ class Public::DesignsController < ApplicationController
     @design = Design.new
     @design_ranks = Design.find(Favorite.group(:design_id).order('count(design_id) desc').limit(3).pluck(:design_id))
     if params[:name]
-      @designs = Design.where("name LIKE?", '%' + params[:name] + '%').page.per(4).order(created_at: :desc).where(is_active: true)
+      @designs = Design.where("name LIKE?", '%' + params[:name] + '%').or(Design.where("introduction LIKE ?", '%' + params[:name] + '%')).page.per(4).order(created_at: :desc).where(is_active: true)
     else
       @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(8)
     end
@@ -58,7 +59,8 @@ class Public::DesignsController < ApplicationController
       redirect_to  design_path
     else
       if @design.update(design_params)
-         redirect_to users_designs_path(current_user)
+        flash[:notice] = "編集に成功しました"
+         redirect_to design_path(params[:id])
       else
         render :edit
       end

@@ -25,19 +25,21 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource)
+    flash[:notice] = "ログインに成功しました"
     root_path
   end
 
   def after_sign_out_path_for(resource)
+    flash[:notice] = "ログアウトしました"
     root_path
   end
 
   private
   def configure_sign_in_params
-    user = User.find_by(email: params[:user][:email])
-    return if user.nil?
-    return unless user.valid_password?(params[:user][:passwprd])
-    if user.is_active == false
+    @user = User.find_by(email: params[:user][:email])
+    return if @user.nil?
+    return unless @user.valid_password?(params[:user][:passwprd])
+    if @user.is_active == false
       redirect_to new_user_registration_path
     end
   end

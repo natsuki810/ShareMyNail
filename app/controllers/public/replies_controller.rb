@@ -6,8 +6,10 @@ class Public::RepliesController < ApplicationController
     @reply = Reply.new(reply_params)
     @reply.user_id = current_user.id
     if @reply.save
+      flash[:notice_comment] = "投稿に成功しました"
       redirect_to design_path(@comment.design.id)
     else
+      flash[:notice_comment] = "投稿に失敗しました"
       redirect_to root_path
     end
   end
@@ -15,8 +17,13 @@ class Public::RepliesController < ApplicationController
   def update
     @reply = Reply.find(params[:id])
     @comment = Comment.find(params[:comment_id])
-    @reply.update(reply_params)
-    redirect_to design_path(@comment.design.id)
+    if @reply.update(reply_params)
+      flash[:notice_comment] = "投稿に成功しました"
+      redirect_to design_path(@comment.design.id)
+    else
+      flash[:notice_comment] = "投稿に失敗しました"
+      redirect_to design_path(@comment.design.id)
+    end
   end
 
   def destroy
@@ -28,8 +35,13 @@ class Public::RepliesController < ApplicationController
 
   def replies_update
     @reply = Reply.find(params[:id])
-    @reply.update(reply_params)
-    redirect_to users_comments_path
+    if @reply.update(reply_params)
+      flash[:notice_comment] = "投稿に成功しました"
+      redirect_to users_comments_path
+    else
+      flash[:notice_comment] = "投稿に失敗しました"
+      redirect_to users_comments_path
+    end
   end
 
   def replies_destroy

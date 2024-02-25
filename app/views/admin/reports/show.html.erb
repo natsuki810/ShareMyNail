@@ -68,7 +68,7 @@
         <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put, class: "btn btn-outline-success btn-block" %>
       </div>
       <div class="col-5 my-3">
-        <%= link_to "削除", admin_design_destroy_path(@report.design.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+        <%= link_to "削除", admin_design_destroy_path(@report.design.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
       </div>
     </div>
     <% elsif @report.comment.present? %>
@@ -92,7 +92,7 @@
         <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put,class: "btn btn-outline-success btn-block" %>
       </div>
       <div class="col-5 my-3">
-        <%= link_to "削除する", admin_comments_destroy_path(@report.comment.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+        <%= link_to "削除する", admin_reports_comments_destroy_path(@report.comment.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
       </div>
     </div>
     <% elsif @report.reply.present? %>
@@ -116,7 +116,7 @@
         <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put, class: "btn btn-outline-success btn-block" %>
       </div>
       <div class="col-5 my-3">
-        <%= link_to "削除する", admin_comment_reply_path(@report.reply.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+        <%= link_to "削除する", admin_reports_replies_destroy_path(@report.reply.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
       </div>
     </div>
     <% end %>

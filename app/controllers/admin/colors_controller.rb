@@ -6,8 +6,13 @@ class Admin::ColorsController < ApplicationController
 
   def create
     @color = Color.new(color_params)
-    @color.save
-    redirect_to admin_colors_path
+    if @color.save
+      flash[:notice] = "投稿に成功しました"
+      redirect_to admin_colors_path
+    else
+      flash[:notice] = "投稿に失敗しました"
+      redirect_to admin_colors_path
+    end
   end
 
   def index

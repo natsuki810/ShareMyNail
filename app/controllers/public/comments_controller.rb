@@ -6,15 +6,25 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.design_id = @design.id
     @comment.user_id = current_user.id
-    @comment.save
-    redirect_to design_path(@design.id)
+    if @comment.save
+      flash[:notice_comment] = "投稿に成功しました"
+      redirect_to design_path(@design.id)
+    else
+      flash[:notice_comment] = "投稿に失敗しました"
+      render design_path(@design.id)
+    end
   end
 
   def update
     @comment = Comment.find(params[:id])
     @design = Design.find(params[:design_id])
-    @comment.update(comment_params)
-    redirect_to design_path(@design.id)
+    if @comment.update(comment_params)
+      flash[:notice_comment] = "投稿に成功しました"
+      redirect_to design_path(@design.id)
+    else
+      flash[:notice_comment] = "投稿に失敗しました"
+      redirect_to design_path(@design.id)
+    end
   end
 
   def destroy
@@ -25,8 +35,13 @@ class Public::CommentsController < ApplicationController
 
   def comments_update
     @comment = Comment.find(params[:id])
-    @comment.update(comment_params)
-    redirect_to users_comments_path
+    if @comment.update(comment_params)
+      flash[:notice_comment] = "投稿に成功しました"
+      redirect_to users_comments_path
+    else
+      flash[:notice_comment] = "投稿に失敗しました"
+      redirect_to users_comments_path
+    end
   end
 
   def comments_destroy
@@ -34,6 +49,7 @@ class Public::CommentsController < ApplicationController
     @comment.destroy
     redirect_to users_comments_path
   end
+
 
   private
   def comment_params

@@ -6,19 +6,7 @@
     </div>
   </div>
 </div>
-<style>
-  .error-message {
-    margin-bottom: 5px;
-  }
-</style>
-<% if @design.errors.any? %>
-<%= @design.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @design.errors.messages.each do |_, messages| %>
-      <li class="error-message"><%= messages.join(', ') %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render "public/shared/error_messages", resource: @design %>
 <%= form_with model: @design, url: designs_path do |f| %>
 <div class="container">
   <div class="row">

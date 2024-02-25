@@ -8,6 +8,7 @@
     </div>
   </div>
 </div>
+<%= render "public/shared/error_messages", resource: @design %>
 <%= form_with model: @design, url: design_path do |f| %>
 <div class="container">
   <div class="row">

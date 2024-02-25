@@ -26,6 +26,11 @@
           User Status
         </div>
       </div>
+      <div class="col-3 m-2">
+        <div class="h4">
+          Design
+        </div>
+      </div>
   </div>
   <% @users.each do |user| %>
   <div class="row">
@@ -33,15 +38,23 @@
       <%= user.id %>
     </div>
     <div class="col-3 m-2">
+      <i class="fa-regular fa-user"></i>
       <%= link_to admin_user_path(user.id), class: "user-link" do %>
         <%= user.name %>
       <% end %>
     </div>
     <div class="col-3 m-2">
       <% if user.is_active %>
+        <i class="fa-solid fa-unlock"></i>
         <span class="font-weight-bold text-success">有効</span>
       <% else %>
+        <i class="fa-solid fa-lock"></i>
         <span class="font-weight-bold text-secondary">退会</span>
+      <% end %>
+    </div>
+    <div class="col-2 m-2">
+      <%= link_to admin_users_designs_path(user.id), class: "user-design-link" do %>
+        <%= user.name %>' Design
       <% end %>
     </div>
   </div>

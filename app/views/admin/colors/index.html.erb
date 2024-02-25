@@ -6,7 +6,8 @@
     </div>
   </div>
 </div>
-  <%= form_with model: @color, url: admin_colors_path do |f| %>
+<%= render "public/shared/flash", flash_message: flash[:notice] %>
+<%= form_with model: @color, url: admin_colors_path do |f| %>
 <div class="container">
   <div class="row">
     <div class="h3">Colors All</div>
@@ -19,7 +20,7 @@
       <%= f.text_field :name, class: "form-control" %>
     </div>
     <div class="col-3 my-2">
-      <%= f.submit "Create", class: "btn btn-outline-success btn-block" %>
+      <%= f.submit "追加", class: "btn btn-outline-success btn-block" %>
     </div>
   </div>
   <% end %>
@@ -33,7 +34,7 @@
     </div>
     <% if color.name != "その他" %>
     <div class="col-3 my-2">
-      <%= link_to "Derete", admin_color_path(color.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+      <%= link_to "削除", admin_color_path(color.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
     </div>
     <% end %>
   </div>

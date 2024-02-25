@@ -18,22 +18,31 @@
       <%= link_to admin_design_path(design.id), class: "design-link" do %>
         <%= image_tag design.image, width: "80%", height: "80%" %>
       <% end %>
-      <div class="col">
-        design:<%= design.name %>
+      <div class="col font-weight-bold">
+        <%= design.name %>
       </div>
       <div class="col">
-        color:<%= design.color.name %>
+        <i class="fa-regular fa-user"></i>
+        <%= design.user.name %>
       </div>
       <div class="col">
-        user:<%= design.user.name %>
+        <i class="fa-solid fa-palette"></i>
+        <%= design.color.name %>
       </div>
       <div class="col">
-        status:
-          <% if design.is_active %>
-            <span class="font-weight-bold text-success">公開</span>
-          <% else %>
-            <span class="font-weight-bold text-secondary">非公開</span>
-          <% end %>
+        <i class="fa-solid fa-heart"></i>
+        <%= design.favorites.count %>
+        <i class="fa-solid fa-comment"></i>
+        <%= design.comments.count + design.comments.map { |comment| comment.replies.count }.sum %>
+      </div>
+      <div class="col">
+        <% if design.is_active %>
+          <i class="fa-solid fa-unlock"></i>
+          <span class="font-weight-bold text-success">公開</span>
+        <% else %>
+          <i class="fa-solid fa-lock"></i>
+          <span class="font-weight-bold text-secondary">非公開</span>
+        <% end %>
       </div>
     </div>
   <% end %>

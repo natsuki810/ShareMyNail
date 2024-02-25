@@ -7,6 +7,7 @@
     </div>
   </div>
 </div>
+<%= render "public/shared/flash", flash_message: flash[:notice_comment] %>
 <div class="container">
   <div class="row">
     <div class="h3">Comments All</div>
@@ -47,7 +48,7 @@
           </div>
         </div>
         <div class="col-2 m-1 text-right">
-          <%= link_to "コメント削除", comments_destroy_path(comment), method: :delete, class: "text-danger" %>
+          <%= link_to "コメント削除", comments_destroy_path(comment), method: :delete, class: "text-danger", data: { confirm: '本当に削除しますか？' } %>
         </div>
       </div>
     </div>
@@ -86,7 +87,7 @@
           </div>
         </div>
         <div class="col-2 m-1 text-right">
-          <%= link_to "コメント削除", replies_destroy_path(comment), method: :delete, class: "text-danger" %>
+          <%= link_to "コメント削除", replies_destroy_path(comment), method: :delete, class: "text-danger", data: { confirm: '本当に削除しますか？' } %>
         </div>
       </div>
     </div>

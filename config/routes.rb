@@ -15,7 +15,9 @@ namespace :admin do
     resources :replies, only: [:index, :destroy]
   end
   delete 'replies/:id/replies_destroy' => 'replies#replies_destroy', as: "replies_destroy"
+  delete 'replies/:id/reports_replies_destroy' => 'replies#reports_replies_destroy', as: "reports_replies_destroy"
   delete 'comments/:id/comment_destroy' => 'comments#comment_destroy', as: "comments_destroy"
+  delete 'comments/:id/reports_comment_destroy' => 'comments#reports_comment_destroy', as: "reports_comments_destroy"
   resources :reports, only: [:index, :show]
   put 'reports/update/:id' => 'reports#update', as: "designs_reports"
   resources :users, only: [:index, :show, :edit, :update]
