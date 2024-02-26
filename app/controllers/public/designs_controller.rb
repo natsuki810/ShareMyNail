@@ -48,7 +48,7 @@ class Public::DesignsController < ApplicationController
 
   def edit
     @design = Design.find(params[:id])
-    unless @design.user == current_user
+    if @design.user != current_user
       redirect_to  design_path
     end
   end
@@ -69,9 +69,13 @@ class Public::DesignsController < ApplicationController
 
   def destroy
     @design = Design.find(params[:id])
-    @design.destroy
-    redirect_to users_designs_path(current_user)
+    if @design.user == current_user
+      @design.destroy
+      redirect_to users_designs_path(current_user) and return
+    end
+    redirect_to design_path(params[:id])
   end
+
   private
 
   def design_params

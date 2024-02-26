@@ -17,7 +17,7 @@ namespace :admin do
   delete 'replies/:id/replies_destroy' => 'replies#replies_destroy', as: "replies_destroy"
   delete 'replies/:id/reports_replies_destroy' => 'replies#reports_replies_destroy', as: "reports_replies_destroy"
   delete 'comments/:id/comment_destroy' => 'comments#comment_destroy', as: "comments_destroy"
-  delete 'comments/:id/reports_comment_destroy' => 'comments#reports_comment_destroy', as: "reports_comments_destroy"
+  delete 'comments/:id/reports_comments_destroy' => 'comments#reports_comments_destroy', as: "reports_comments_destroy"
   resources :reports, only: [:index, :show]
   put 'reports/update/:id' => 'reports#update', as: "designs_reports"
   resources :users, only: [:index, :show, :edit, :update]
@@ -29,7 +29,7 @@ end
 scope module: :public do
   root to: 'homes#top'
   get '/homes/about' => 'homes#about', as: 'about'
-  get '/users/mypage' => 'users#show'
+  get '/users/mypage/:id' => 'users#show', as: 'users_mypage'
   get '/users/mypage/edit' => 'users#edit'
   patch '/users/mypage/edit' => 'users#update'
   get '/users/comments' => 'users#comments'

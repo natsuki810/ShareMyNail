@@ -2,14 +2,22 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = current_user
-    @designs = current_user.designs.order(created_at: :desc).limit(4)
-    @favorites = current_user.favorites.order(created_at: :desc).limit(4)
+    @user = User.find(params[:id])
+    if @user == current_user
+      @designs = @user.designs.order(created_at: :desc).limit(4)
+    else
+      @designs = @user.designs.where(is_active:true).order(created_at: :desc).limit(4)
+    end
+    @favorites = @user.favorites.order(created_at: :desc).limit(4)
   end
 
   def designs
     @user = User.find(params[:id])
-    @designs = @user.designs.order(created_at: :desc)
+    if @user == current_user
+      @designs = @user.designs.order(created_at: :desc)
+    else
+      @designs = @user.designs.where(is_active:true).order(created_at: :desc)
+    end
   end
 
   def comments

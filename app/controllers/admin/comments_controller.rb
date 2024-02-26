@@ -22,7 +22,7 @@ class Admin::CommentsController < ApplicationController
     redirect_to admin_comments_path(params[:id])
   end
 
-  def reports_comment_destroy
+  def reports_comments_destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to admin_reports_path

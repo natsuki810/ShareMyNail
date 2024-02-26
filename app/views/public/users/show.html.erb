@@ -1,14 +1,23 @@
 <div class="bg-pink pl-3">
   <div class="row">
     <div class="col m-2">
-      <%= link_to "Home", root_path %> > My Page
+      <%= link_to "Home", root_path %> >
+      <% if @user == current_user %>
+        My Page
+      <% else %>
+        User's Profole
+      <% end %>
     </div>
   </div>
 </div>
 <%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
-    <div class="h3">My Page</div>
+    <% if @user == current_user %>
+      <div class="h3">My Page</div>
+    <% else %>
+      <div class="h3">User's Profole</div>
+    <% end %>
   </div>
   <div class="row">
     <div class="h4">Profile</div>
@@ -38,11 +47,13 @@
       <%= @user.introduction %>
     </div>
   </div>
+  <% if @user == current_user %>
     <div class="row">
       <div class="col-3 my-2 py-3">
-        <%= link_to "Edit Profile >>", users_mypage_edit_path, class: "btn btn-outline-primary btn-block" %>
+        <%= link_to "プロフィール編集 >>", users_mypage_edit_path, class: "btn btn-outline-primary btn-block" %>
       </div>
     </div>
+  <% end %>
   <div class="row">
     <div class="h4">My Design</div>
   </div>
@@ -75,7 +86,7 @@
   </div>
   <div class="row">
     <div class="col-3 my-3">
-      <%= link_to "User's Designs All >>", users_designs_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
+      <%= link_to "User's Designs All >>", users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
   <div class="row">
@@ -111,13 +122,15 @@
   </div>
   <div class="row">
     <div class="col-3 my-3">
-      <%= link_to "Favorite Designs >>", favorites_path(current_user.id), class: "btn btn-outline-primary btn-block" %>
+      <%= link_to "Favorite Designs >>", favorites_path(@user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
-    <div class="col-3 my-3">
-      <%= link_to "Comments All >>", users_comments_path, class: "btn btn-outline-primary btn-block" %>
-    </div>
-    <div class="col-3 my-3">
-      <%= link_to "New Post >>", new_design_path, class: "btn btn-outline-primary btn-block" %>
-    </div>
+    <% if @user == current_user %>
+      <div class="col-3 my-3">
+        <%= link_to "Comments All >>", users_comments_path, class: "btn btn-outline-primary btn-block" %>
+      </div>
+      <div class="col-3 my-3">
+        <%= link_to "New Post >>", new_design_path, class: "btn btn-outline-primary btn-block" %>
+      </div>
+    <% end %>
   </div>
 </div>

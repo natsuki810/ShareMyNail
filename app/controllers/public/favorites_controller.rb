@@ -16,6 +16,7 @@ class Public::FavoritesController < ApplicationController
   end
 
   def index
+    @user = User.find(params[:user_id])
     @favorites = Favorite.where(user_id:params[:user_id]).order(created_at: :desc)
   end
 
