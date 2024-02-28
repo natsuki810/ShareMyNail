@@ -37,11 +37,9 @@ class Public::DesignsController < ApplicationController
     @comment = Comment.where(design_id: @design.id)
     @reply = Reply.new
     @reply = Reply.order(created_at: :desc)
-    # @total_comment = @design.comments.map {|comment| comment.replies.count}.sum + @design.comments.count
     reply_count = 0
     @design.comments.each do |comment|
       reply_count = reply_count + comment.replies.count
-      # reply_count += comment.replies.count
     end
     @total_comment = reply_count + @design.comments.count
   end

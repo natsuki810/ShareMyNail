@@ -13,8 +13,10 @@ class Admin::DesignsController < ApplicationController
   def show
     @design = Design.find(params[:id])
     @color = Color.all
+    @comments = @design.comments.order(created_at: :desc).page(params[:page]).per(3)
     @comment = Comment.where(design_id: @design.id)
     @reply = Reply.new
+    @reply = Reply.order(created_at: :desc)
     reply_count = 0
     @design.comments.each do |comment|
       reply_count = reply_count + comment.replies.count

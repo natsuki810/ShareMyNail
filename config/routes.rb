@@ -29,9 +29,9 @@ end
 scope module: :public do
   root to: 'homes#top'
   get '/homes/about' => 'homes#about', as: 'about'
-  get '/users/mypage/:id' => 'users#show', as: 'users_mypage'
   get '/users/mypage/edit' => 'users#edit'
   patch '/users/mypage/edit' => 'users#update'
+  get '/users/mypage/:id' => 'users#show', as: 'users_mypage'
   get '/users/comments' => 'users#comments'
   get '/users/:id/designs' => 'users#designs', as: "users_designs"
   get '/users/:user_id/favorites' => 'favorites#index', as: 'favorites'

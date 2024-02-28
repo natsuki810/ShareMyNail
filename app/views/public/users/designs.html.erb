@@ -42,6 +42,7 @@
         <%= design.color.name %>
       </div>
       <div class="col">
+        <% if @user == current_user %>
           <% if design.is_active %>
             <i class="fa-solid fa-unlock"></i>
             <span class="font-weight-bold text-success">公開</span>
@@ -49,6 +50,7 @@
             <i class="fa-solid fa-lock"></i>
             <span class="font-weight-bold text-secondary">非公開</span>
           <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>

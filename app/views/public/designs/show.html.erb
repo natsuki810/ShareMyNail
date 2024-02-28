@@ -136,7 +136,7 @@
           <%= link_to "報告", new_design_report_path(@design, content_id: comment.id, type: "comment"), class: "text-danger" %>
           <% end %>
           <% if comment.replies.count > 0 %>
-          <div class="col">
+          <div class="col m-1">
             <div class="text-primary" type="button" data-toggle="collapse" data-target="#replies-<%= comment.id %>">
               さらに表示(<%= comment.replies.count %>)
             </div>
@@ -159,7 +159,9 @@
     <div id="replies-<%= comment.id %>" class="collapse">
     <% comment.replies.each do |reply| %>
       <div class="col mx-4 border border-2">
-        <div class="col small"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
+        <div class="col small">
+          <%= reply.created_at.strftime('%Y/%m/%d') %>
+        </div>
         <div class="col font-weight-bold">
           <i class="fa-regular fa-user"></i>
           <%= reply.user.name %>
@@ -209,9 +211,9 @@
         <%= f.submit "*返信する" %>
         <% end %>
       </div>
-      </div>
-      <% end %>
-      <%= paginate @comments %>
+    </div>
+    <% end %>
+    <%= paginate @comments %>
     </div>
   </div>
 </div>

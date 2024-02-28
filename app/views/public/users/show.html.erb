@@ -55,7 +55,7 @@
     </div>
   <% end %>
   <div class="row">
-    <div class="h4">My Design</div>
+    <div class="h4">My Designs</div>
   </div>
   <div class="row">
     <% @designs.each do |design| %>
@@ -73,12 +73,14 @@
         <%= design.comments.count %>
       </div>
       <div class="col">
-        <% if design.is_active %>
-          <i class="fa-solid fa-unlock"></i>
-          <span class="font-weight-bold text-success">公開</span>
-        <% else %>
-          <i class="fa-solid fa-lock"></i>
-          <span class="font-weight-bold text-secondary">非公開</span>
+        <% if @user == current_user %>
+          <% if design.is_active %>
+            <i class="fa-solid fa-unlock"></i>
+            <span class="font-weight-bold text-success">公開</span>
+          <% else %>
+            <i class="fa-solid fa-lock"></i>
+            <span class="font-weight-bold text-secondary">非公開</span>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -86,7 +88,11 @@
   </div>
   <div class="row">
     <div class="col-3 my-3">
-      <%= link_to "User's Designs All >>", users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
+      <% if @user == current_user %>
+        <%= link_to "My Designs All >>", users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
+      <% else %>
+        <%= link_to "User's Designs All >>", users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -104,7 +110,9 @@
     </div>
     <div class="col">
       <i class="fa-regular fa-user"></i>
-      <%= favorites.design.user.name %>
+        <%= link_to users_mypage_path(favorites.design.user.id), class: "user_design-link" do %>
+          <%= favorites.design.user.name %>
+        <% end %>
     </div>
     <div class="col">
       <i class="fa-solid fa-palette"></i>
@@ -122,7 +130,11 @@
   </div>
   <div class="row">
     <div class="col-3 my-3">
-      <%= link_to "Favorite Designs >>", favorites_path(@user.id), class: "btn btn-outline-primary btn-block" %>
+      <% if @user == current_user %>
+        <%= link_to "My Favorite Designs >>", favorites_path(@user.id), class: "btn btn-outline-primary btn-block" %>
+      <% else %>
+        <%= link_to "Favorite Designs >>", favorites_path(@user.id), class: "btn btn-outline-primary btn-block" %>
+      <% end %>
     </div>
     <% if @user == current_user %>
       <div class="col-3 my-3">

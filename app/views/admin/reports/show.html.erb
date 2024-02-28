@@ -89,7 +89,7 @@
     </div>
     <div class="row">
       <div class="col-5 my-3">
-        <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put,class: "btn btn-outline-success btn-block" %>
+        <%= link_to "対応済", admin_designs_reports_path(@report.id),　method: :put,class: "btn btn-outline-success btn-block" %>
       </div>
       <div class="col-5 my-3">
         <%= link_to "削除する", admin_reports_comments_destroy_path(@report.comment.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
