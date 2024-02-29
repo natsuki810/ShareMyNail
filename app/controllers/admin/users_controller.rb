@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def show
@@ -33,9 +33,10 @@ class Admin::UsersController < ApplicationController
 
   def comments
     @user = User.find(params[:id])
-    @comments = @user.comments.order(created_at: :desc)
+    @comments = @user.comments.order(created_at: :desc).page(params[:page]).per(10)
     @replies = @user.replies.order(created_at: :desc)
     @array = (@comments + @replies).sort {|a, b| b.created_at <=> a.created_at}.take(4)
+    @array = Kaminari.paginate_array(@array).page(params[:page]).per(5)
   end
 
   private

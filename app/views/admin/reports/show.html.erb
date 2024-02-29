@@ -65,7 +65,9 @@
     </div>
     <div class="row">
       <div class="col-5 my-3">
-        <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put, class: "btn btn-outline-success btn-block" %>
+      <%= form_with model: @report, url: admin_report_path do |f| %>
+        <%= f.submit "対応済", class: "btn btn-outline-success btn-block" %>
+      <% end %>
       </div>
       <div class="col-5 my-3">
         <%= link_to "削除", admin_design_destroy_path(@report.design.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
@@ -89,7 +91,9 @@
     </div>
     <div class="row">
       <div class="col-5 my-3">
-        <%= link_to "対応済", admin_designs_reports_path(@report.id),　method: :put,class: "btn btn-outline-success btn-block" %>
+      <%= form_with model: @report, url: admin_report_path do |f| %>
+        <%= f.submit "対応済", class: "btn btn-outline-success btn-block" %>
+      <% end %>
       </div>
       <div class="col-5 my-3">
         <%= link_to "削除する", admin_reports_comments_destroy_path(@report.comment.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
@@ -113,7 +117,9 @@
     </div>
     <div class="row">
       <div class="col-5 my-3">
-        <%= link_to "対応済", admin_designs_reports_path(@report.id),method: :put, class: "btn btn-outline-success btn-block" %>
+      <%= form_with model: @report, url: admin_report_path do |f| %>
+        <%= f.submit "対応済", class: "btn btn-outline-success btn-block" %>
+      <% end %>
       </div>
       <div class="col-5 my-3">
         <%= link_to "削除する", admin_reports_replies_destroy_path(@report.reply.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>

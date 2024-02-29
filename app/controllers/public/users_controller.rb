@@ -28,6 +28,7 @@ class Public::UsersController < ApplicationController
     @array.push(@comments).push(@replies).flatten!
     @array = @array.sort {|a,b| a.created_at <=> b.created_at}
     @array = @array.reverse
+    @array = Kaminari.paginate_array(@array).page(params[:page]).per(5)
   end
 
   def edit

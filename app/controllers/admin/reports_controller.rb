@@ -2,7 +2,7 @@ class Admin::ReportsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @reports = Report.order(created_at: :desc)
+    @reports = Report.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
