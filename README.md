@@ -39,5 +39,3 @@ https://docs.google.com/spreadsheets/d/1O3m3jNU8Qh6wXp3J3RhexpgVC7zySVckZGjpJ3d4
 
 ## 使用素材
 - Font Awesome
-- フリー素材として以下を使用
-  - GIRLY DROP（https://girlydrop.com/）
