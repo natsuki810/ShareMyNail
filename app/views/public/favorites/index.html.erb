@@ -16,20 +16,24 @@
     <% if favorites.design.is_active == true %>
     <div class="col-3 my-5">
       <%= link_to design_path(favorites.design.id), class: "design-link" do %>
-        <%= image_tag favorites.design.image, width: "80%", height: "80%" %>
+        <%= image_tag design.image.variant(resize: '200x200') %>
       <% end %>
-      <div class="col">
-        design:<%= favorites.design.name %>
+      <div class="col font-weight-bold">
+        <%= favorites.design.name %>
       </div>
       <div class="col">
-        color:<%= favorites.design.color.name %>
+        <i class="fa-solid fa-palette"></i>
+        <%= favorites.design.color.name %>
       </div>
       <div class="col">
-        user:<%= favorites.design.user.name %>
+        <i class="fa-regular fa-user"></i>
+        <%= favorites.design.user.name %>
       </div>
       <div class="col">
-        ♥<%= favorites.design.favorites.count %>
-        コメント<%= favorites.design.comments.count %>
+        <i class="fa-solid fa-heart"></i>
+        <%= favorites.design.favorites.count %>
+        <i class="fa-regular fa-comment"></i>
+        <%= favorites.design.comments.count %>
       </div>
     </div>
   <% end %>
