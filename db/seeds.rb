@@ -5,10 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(
-  email: "111@sharemynail.com",
-  password: "111111"
-)
+Admin.find_or_create_by!(email: "111@sharemynail.com") do |admin|
+  admin.password = "111111"
+end
 
 other = Color.find_or_create_by!(name: "その他") do |color|
   color.name = "その他"
