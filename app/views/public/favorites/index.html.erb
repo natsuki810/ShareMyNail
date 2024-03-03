@@ -16,7 +16,7 @@
     <% if favorites.design.is_active == true %>
     <div class="col-3 my-5">
       <%= link_to design_path(favorites.design.id), class: "design-link" do %>
-        <%= image_tag design.image.variant(resize: '200x200') %>
+        <%= image_tag favorites.design.image.variant(resize: '200x200') %>
       <% end %>
       <div class="col font-weight-bold">
         <%= favorites.design.name %>
