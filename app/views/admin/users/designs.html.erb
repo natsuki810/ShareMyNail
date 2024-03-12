@@ -16,7 +16,7 @@
     <% @designs.each do |design| %>
     <div class="col-3 my-5">
       <%= link_to admin_design_path(design.id), class: "design-link" do %>
-        <%= image_tag design.image, width: "80%", height: "80%" %>
+        <%= image_tag design.image.variant(resize: '200x200') %>
       <% end %>
       <div class="col font-weight-bold">
         <%= design.name %>
