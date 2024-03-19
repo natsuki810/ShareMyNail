@@ -26,6 +26,11 @@
           <%= link_to design_path(design.id), class: "design-link" do %>
             <%= image_tag design.image.variant(resize: '200x200') %>
           <% end %>
+          <div class="col">
+            <div class="fa-solid fa-calendar-days">
+              <%= design.created_at.strftime('%Y/%m/%d')  %>
+            </div>
+          </div>
           <div class="col font-weight-bold">
             <%= design.name %>
           </div>

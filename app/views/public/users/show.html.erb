@@ -30,6 +30,7 @@
     <div class="col-4 mb-2 py-2 border rounded">
       <%= @user.name %>
     </div>
+    <% if @user == current_user %>
     <div class="col-2 mb-2 py-2 font-weight-bold">
       <i class="fa-regular fa-envelope"></i>
       mail address
@@ -37,6 +38,7 @@
     <div class="col-4 mb-2 py-2 border rounded">
       <%= @user.email %>
     </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="col-2 my-2 py-3 font-weight-bold">

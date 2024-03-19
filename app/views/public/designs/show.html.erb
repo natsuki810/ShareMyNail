@@ -34,13 +34,18 @@
       <div class="col-6 my-2">
         <%= image_tag @design.image.variant(resize: '400x400') %>
       </div>
+      <div class="col m-1">
+        <div class="fa-solid fa-calendar-days">
+          <%= @design.created_at.strftime('%Y/%m/%d')  %>
+        </div>
+      </div>
       <div class="col m-1 font-weight-bold">
         <i class="fa-regular fa-user"></i>
         <%= @design.user.name %>
       </div>
       <div class="col m-1">
         <i class="fa-regular fa-file-lines"></i>
-        <%= @design.introduction %>
+        <%= simple_format(@design.introduction, sanitize: true) %>
       </div>
       <div class="col m-1">
         <i class="fa-solid fa-palette"></i>

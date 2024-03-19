@@ -22,7 +22,7 @@ class Public::DesignsController < ApplicationController
 
   def index
     @design = Design.new
-    @design_ranks = Design.find(Favorite.group(:design_id).order('count(design_id) desc').limit(3).pluck(:design_id))
+    @design_ranks = Design.joins(:favorites).where(is_active: true).group(:id).order("count(favorites.design_id) desc").limit(3)
     if params[:name]
       @designs = Design.where("name LIKE?", '%' + params[:name] + '%').or(Design.where("introduction LIKE ?", '%' + params[:name] + '%')).page.per(4).order(created_at: :desc).where(is_active: true)
     else
@@ -32,6 +32,9 @@ class Public::DesignsController < ApplicationController
 
   def show
     @design = Design.find(params[:id])
+    if !@design.is_active && @design.user != current_user
+      redirect_to designs_path
+    end
     @color = Color.all
     @comments = @design.comments.order(created_at: :desc).page(params[:page]).per(3)
     @comment = Comment.where(design_id: @design.id)

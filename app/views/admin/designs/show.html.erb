@@ -34,7 +34,7 @@
       </div>
       <div class="col m-1">
         <i class="fa-regular fa-file-lines"></i>
-        <%= @design.introduction %>
+        <%= simple_format(@design.introduction, sanitize: true) %>
       </div>
       <div class="col m-1">
         <i class="fa-solid fa-palette"></i>
