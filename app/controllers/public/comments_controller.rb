@@ -11,7 +11,7 @@ class Public::CommentsController < ApplicationController
       redirect_to design_path(@design.id)
     else
       flash[:notice_comment] = "投稿に失敗しました"
-      render design_path(@design.id)
+      redirect_to design_path(@design.id)
     end
   end
 

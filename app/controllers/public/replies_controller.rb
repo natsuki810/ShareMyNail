@@ -10,7 +10,7 @@ class Public::RepliesController < ApplicationController
       redirect_to design_path(@comment.design.id)
     else
       flash[:notice_comment] = "投稿に失敗しました"
-      redirect_to root_path
+      redirect_to design_path(@comment.design.id)
     end
   end
 
