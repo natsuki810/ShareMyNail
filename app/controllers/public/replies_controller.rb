@@ -51,8 +51,7 @@ class Public::RepliesController < ApplicationController
   end
 
   private
-  def reply_params
-    params.require(:reply).permit(:content, :comment_id)
-  end
-
+    def reply_params
+      params.require(:reply).permit(:content, :comment_id)
+    end
 end

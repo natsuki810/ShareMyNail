@@ -2,9 +2,9 @@ class Admin::DesignsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @design_ranks = Design.find(Favorite.group(:design_id).order('count(design_id) desc').limit(3).pluck(:design_id))
+    @design_ranks = Design.find(Favorite.group(:design_id).order("count(design_id) desc").limit(3).pluck(:design_id))
     if params[:name]
-      @designs = Design.where("name LIKE ?", '%' + params[:name] + '%').or(Design.where("introduction LIKE ?", '%' + params[:name] + '%')).page.per(4).order(created_at: :desc)
+      @designs = Design.where("name LIKE ?", "%" + params[:name] + "%").or(Design.where("introduction LIKE ?", "%" + params[:name] + "%")).page.per(4).order(created_at: :desc)
     else
       @designs = Design.order(created_at: :desc).page(params[:page]).per(8)
     end
@@ -51,8 +51,7 @@ class Admin::DesignsController < ApplicationController
   end
 
   private
-
-  def design_params
-     params.require(:design).permit(:name, :introduction, :color_id, :image, :is_active)
-  end
+    def design_params
+      params.require(:design).permit(:name, :introduction, :color_id, :image, :is_active)
+    end
 end

@@ -6,10 +6,10 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @designs = Design.where(user_id:params[:id]).order(created_at: :desc).limit(4)
+    @designs = Design.where(user_id: params[:id]).order(created_at: :desc).limit(4)
     @comments = @user.comments.order(created_at: :desc).limit(4)
     @replies = @user.replies.order(created_at: :desc).limit(4)
-    @array = (@comments + @replies).sort {|a, b| b.created_at <=> a.created_at}.take(3)
+    @array = (@comments + @replies).sort { |a, b| b.created_at <=> a.created_at }.take(3)
     # @array = []
     # @array.push(@comments).push(@replies).flatten!
     # @array = @array.sort {|a,b| a.created_at <=> b.created_at}
@@ -28,19 +28,19 @@ class Admin::UsersController < ApplicationController
 
   def designs
     @user = User.find(params[:id])
-    @designs = Design.where(user_id:params[:id]).order(created_at: :desc)
+    @designs = Design.where(user_id: params[:id]).order(created_at: :desc)
   end
 
   def comments
     @user = User.find(params[:id])
     @comments = @user.comments.order(created_at: :desc).page(params[:page]).per(10)
     @replies = @user.replies.order(created_at: :desc)
-    @array = (@comments + @replies).sort {|a, b| b.created_at <=> a.created_at}.take(4)
+    @array = (@comments + @replies).sort { |a, b| b.created_at <=> a.created_at }.take(4)
     @array = Kaminari.paginate_array(@array).page(params[:page]).per(5)
   end
 
   private
-  def user_params
-  params.require(:user).permit(:name, :email, :is_active, :introduction)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :is_active, :introduction)
+    end
 end

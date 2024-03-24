@@ -24,7 +24,7 @@ class Public::ReportsController < ApplicationController
   end
 
   private
-  def report_params
-     params.permit(:introduction)
-  end
+    def report_params
+      params.permit(:introduction)
+    end
 end

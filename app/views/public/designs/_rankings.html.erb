@@ -3,26 +3,26 @@
     <div class="h4">Designs Ranking</div>
   </div>
   <% design_ranks.each.with_index(1) do |rank, i| %>
-  <div class="col m-3">
+  <div class="ranking-item col m-3">
     <div class="h5">第<%= i %>位</div>
     <%= link_to design_path(rank), class: "design-link" do %>
       <%= image_tag rank.image.variant(resize: '150x150') %>
     <% end %>
-    <div class="col">
+    <div class="ranking-create col-12">
       <div class="fa-solid fa-calendar-days">
         <%= rank.created_at.strftime('%Y/%m/%d')  %>
       </div>
     </div>
-    <div class="col font-weight-bold">
+    <div class="ranking-name col-12 font-weight-bold">
       <%= rank.name %>
     </div>
-    <div class="col">
+    <div class="design-user col-12">
       <i class="fa-regular fa-user"></i>
       <%= link_to users_mypage_path(rank.user.id), class: "user_design-link" do %>
         <%= rank.user.name %>
       <% end %>
     </div>
-    <div class="col">
+    <div class="rankling-reaction col-12">
       <i class="fa-solid fa-heart"></i>
       <%= rank.favorites.count %>
       <i class="fa-regular fa-comment"></i>

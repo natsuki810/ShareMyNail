@@ -35,12 +35,12 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   private
-  def configure_sign_in_params
-    @user = User.find_by(email: params[:user][:email])
-    return if @user.nil?
-    return unless @user.valid_password?(params[:user][:passwprd])
-    if @user.is_active == false
-      redirect_to new_user_registration_path
+    def configure_sign_in_params
+      @user = User.find_by(email: params[:user][:email])
+      return if @user.nil?
+      return unless @user.valid_password?(params[:user][:passwprd])
+      if @user.is_active == false
+        redirect_to new_user_registration_path
+      end
     end
-  end
 end

@@ -17,13 +17,13 @@ class Admin::ReportsController < ApplicationController
       redirect_to admin_reports_path
     else
       lash[:notice] = "対応済にできませんでした"
-      redirect_to admin_reports_path  
+      redirect_to admin_reports_path
     end
   end
-  
-  
+
+
   private
-  def report_params
-    params.require(:report).permit(:introduction, :status, :created_at)
-  end
+    def report_params
+      params.require(:report).permit(:introduction, :status, :created_at)
+    end
 end

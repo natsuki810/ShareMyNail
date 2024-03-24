@@ -54,64 +54,64 @@ hina = User.find_or_create_by!(email: "hhh@sharemynail.com") do |user|
 end
 
 Design.find_or_create_by!(name: "キラキラホログラムネイル") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design1.jpg"), filename:"sample-design1.jpg")
-  design.introduction = 'クリアベースにホログラムをたっぷり♪全部１００円均一アイテムです。'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design1.jpg"), filename: "sample-design1.jpg")
+  design.introduction = "クリアベースにホログラムをたっぷり♪全部１００円均一アイテムです。"
   design.user = aska
   design.color = other
 end
 
 Design.find_or_create_by!(name: "ラメグラデーション") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design2.jpg"), filename:"sample-design2.jpg")
-  design.introduction = 'ナチュラルピンクをベースにゴールドグラデーションをアクセントでおきました✴︎全部１００円均一アイテムです。'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design2.jpg"), filename: "sample-design2.jpg")
+  design.introduction = "ナチュラルピンクをベースにゴールドグラデーションをアクセントでおきました✴︎全部１００円均一アイテムです。"
   design.user = aska
   design.color = pink
 end
 
 Design.find_or_create_by!(name: "フラワーネイル") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design3.jpg"), filename:"sample-design3.jpg")
-  design.introduction = 'ワンカラーベースにお花シールで仕上げました'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design3.jpg"), filename: "sample-design3.jpg")
+  design.introduction = "ワンカラーベースにお花シールで仕上げました"
   design.user = aska
   design.color = other
 end
 
 Design.find_or_create_by!(name: "ピンクコーラル＊グラデーション") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design4.jpg"), filename:"sample-design4.jpg")
-  design.introduction = 'ピンクコーラルのシンプルグラデーション☆１００均のオークルピンク使用'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design4.jpg"), filename: "sample-design4.jpg")
+  design.introduction = "ピンクコーラルのシンプルグラデーション☆１００均のオークルピンク使用"
   design.user = hina
   design.color = pink
 end
 
 Design.find_or_create_by!(name: "Vカットストーンネイル") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design5.jpg"), filename:"sample-design5.jpg")
-  design.introduction = 'ピンクベースにシルバーラインとVカットストーン☆１００均のピンクベージュ使用'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design5.jpg"), filename: "sample-design5.jpg")
+  design.introduction = "ピンクベースにシルバーラインとVカットストーン☆１００均のピンクベージュ使用"
   design.user = hina
   design.color = pink
 end
 
 Design.find_or_create_by!(name: "パヒュームネイル") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design6.jpg"), filename:"sample-design6.jpg")
-  design.introduction = 'ピンクとパープルをベースに香水をイメージ♪パープルはオーロラパウダーを重ねました'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design6.jpg"), filename: "sample-design6.jpg")
+  design.introduction = "ピンクとパープルをベースに香水をイメージ♪パープルはオーロラパウダーを重ねました"
   design.user = yui
   design.color = pink
 end
 
 Design.find_or_create_by!(name: "ミルクピンク✖️ミルクブルー") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design7.jpg"), filename:"sample-design7.jpg")
-  design.introduction = 'ミルクっぽいピンクとブルーでほんわかイメージホログラムとストーンでキラキラに'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design7.jpg"), filename: "sample-design7.jpg")
+  design.introduction = "ミルクっぽいピンクとブルーでほんわかイメージホログラムとストーンでキラキラに"
   design.user = yui
   design.color = pink
 end
 
 Design.find_or_create_by!(name: "ブラック✖️ゴールドデザイン") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design8.jpg"), filename:"sample-design8.jpg")
-  design.introduction = 'ブラックをベースにポイントでピンクとゴールドラインのシールで仕上げました'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design8.jpg"), filename: "sample-design8.jpg")
+  design.introduction = "ブラックをベースにポイントでピンクとゴールドラインのシールで仕上げました"
   design.user = yui
   design.color = black_Withte
 end
 
 Design.find_or_create_by!(name: "ミルクブルー✖️パープルグラデ") do |design|
-  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design9.jpg"), filename:"sample-design9.jpg")
-  design.introduction = 'ミルクブルーをベースにパープル・ピンク・ブルーラメをmixしてグラデをポイントに♪'
+  design.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-design9.jpg"), filename: "sample-design9.jpg")
+  design.introduction = "ミルクブルーをベースにパープル・ピンク・ブルーラメをmixしてグラデをポイントに♪"
   design.user = yui
   design.color = bulue
 end

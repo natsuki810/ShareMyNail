@@ -5,7 +5,7 @@ class Public::FavoritesController < ApplicationController
     @design = Design.find(params[:design_id])
     @favorite = current_user.favorites.new(design_id: @design.id)
     @favorite.save
-    redirect_to  design_path(@design)
+    redirect_to design_path(@design)
   end
 
   def destroy
@@ -17,7 +17,6 @@ class Public::FavoritesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @favorites = Favorite.where(user_id:params[:user_id]).order(created_at: :desc)
+    @favorites = Favorite.where(user_id: params[:user_id]).order(created_at: :desc)
   end
-
 end

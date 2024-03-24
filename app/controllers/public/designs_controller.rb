@@ -24,7 +24,7 @@ class Public::DesignsController < ApplicationController
     @design = Design.new
     @design_ranks = Design.joins(:favorites).where(is_active: true).group(:id).order("count(favorites.design_id) desc").limit(3)
     if params[:name]
-      @designs = Design.where("name LIKE?", '%' + params[:name] + '%').or(Design.where("introduction LIKE ?", '%' + params[:name] + '%')).page.per(4).order(created_at: :desc).where(is_active: true)
+      @designs = Design.where("name LIKE?", "%" + params[:name] + "%").or(Design.where("introduction LIKE ?", "%" + params[:name] + "%")).page.per(4).order(created_at: :desc).where(is_active: true)
     else
       @designs = Design.order(created_at: :desc).where(is_active: true).page(params[:page]).per(8)
     end
@@ -61,7 +61,7 @@ class Public::DesignsController < ApplicationController
     else
       if @design.update(design_params)
         flash[:notice] = "編集に成功しました"
-         redirect_to design_path(params[:id])
+        redirect_to design_path(params[:id])
       else
         render :edit
       end
@@ -78,8 +78,7 @@ class Public::DesignsController < ApplicationController
   end
 
   private
-
-  def design_params
-     params.require(:design).permit(:name, :introduction, :color_id, :image, :is_active)
-  end
+    def design_params
+      params.require(:design).permit(:name, :introduction, :color_id, :image, :is_active)
+    end
 end

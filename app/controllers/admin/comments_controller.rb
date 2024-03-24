@@ -6,7 +6,7 @@ class Admin::CommentsController < ApplicationController
     @Reply = Reply.all
     @array = []
     @array.push(@comments).push(@Reply).flatten!
-    @array = @array.sort {|a,b| a.created_at <=> b.created_at}
+    @array = @array.sort { |a, b| a.created_at <=> b.created_at }
     @array = @array.reverse
     @array = Kaminari.paginate_array(@array).page(params[:page]).per(5)
   end

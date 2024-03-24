@@ -23,12 +23,11 @@ module Admin::ReportsHelper
 
   def is_task_link(report)
     if report.status == true
-      return false
+      false
     elsif report.design.nil? && report.reply.nil? && report.comment.nil?
-      return false
+      false
     else
-      return true
+      true
     end
   end
-
 end

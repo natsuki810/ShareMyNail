@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
     if @user == current_user
       @designs = @user.designs.order(created_at: :desc).limit(4)
     else
-      @designs = @user.designs.where(is_active:true).order(created_at: :desc).limit(4)
+      @designs = @user.designs.where(is_active: true).order(created_at: :desc).limit(4)
     end
     @favorites = @user.favorites.order(created_at: :desc).limit(4)
   end
@@ -16,7 +16,7 @@ class Public::UsersController < ApplicationController
     if @user == current_user
       @designs = @user.designs.order(created_at: :desc)
     else
-      @designs = @user.designs.where(is_active:true).order(created_at: :desc)
+      @designs = @user.designs.where(is_active: true).order(created_at: :desc)
     end
   end
 
@@ -26,7 +26,7 @@ class Public::UsersController < ApplicationController
     @replies = @user.replies.order(created_at: :desc)
     @array = []
     @array.push(@comments).push(@replies).flatten!
-    @array = @array.sort {|a,b| a.created_at <=> b.created_at}
+    @array = @array.sort { |a, b| a.created_at <=> b.created_at }
     @array = @array.reverse
     @array = Kaminari.paginate_array(@array).page(params[:page]).per(5)
   end
@@ -58,7 +58,7 @@ class Public::UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :introduction)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :introduction)
+    end
 end
