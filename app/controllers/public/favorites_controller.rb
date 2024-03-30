@@ -5,14 +5,14 @@ class Public::FavoritesController < ApplicationController
     @design = Design.find(params[:design_id])
     @favorite = current_user.favorites.new(design_id: @design.id)
     @favorite.save
-    redirect_to design_path(@design)
+    # redirect_to design_path(@design)
   end
 
   def destroy
     @design = Design.find(params[:design_id])
     @favorite = current_user.favorites.find_by(design_id: @design.id)
     @favorite.destroy
-    redirect_to design_path(@design)
+    # redirect_to design_path(@design)
   end
 
   def index

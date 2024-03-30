@@ -1,6 +1,6 @@
 <div class="bg-pink pl-3">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-12 m-2">
         Home
     </div>
   </div>
@@ -21,22 +21,22 @@
     </div>
   </div>
   <div class="row">
-    <div class="title col-lg-9 col-md-8 col-sm-12">
+    <div class="col-lg-9 col-md-8 col-sm-12">
       <div class="row">
-        <div class="h4 my-1">New Design</div>
+        <div class="h4">New Design</div>
       </div>
       <div class="row">
         <% @designs.each do |design| %>
-        <div class="design-item col-lg-4 col-md-6 col-sm-12 my-5">
+        <div class="col-lg-4 col-md-6 col-sm-12 my-5">
           <%= link_to design_path(design.id), class: "design-link" do %>
             <%= image_tag design.image.variant(resize: '230x230') %>
           <% end %>
-          <div class="design-create col-12">
+          <div class="col-12">
             <div class="fa-solid fa-calendar-days">
               <%= design.created_at.strftime('%Y/%m/%d')  %>
             </div>
           </div>
-          <div class="design-name col-12 font-weight-bold">
+          <div class="col-12 font-weight-bold">
             <%= design.name %>
           </div>
           <div class="design-user col-12">
@@ -45,7 +45,7 @@
               <%= design.user.name %>
             <% end %>
           </div>
-          <div class="design-reaction col-12">
+          <div class="col-12">
             <i class="fa-solid fa-heart"></i>
             <%= design.favorites.count %>
             <i class="fa-regular fa-comment"></i>
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="rainking-content col-lg-3 col-md-4 col-sm-12">
+    <div class="col-lg-3 col-md-4 col-sm-12">
       <%=render 'public/designs/rankings', design_ranks: @design_ranks %>
     </div>
   </div>
