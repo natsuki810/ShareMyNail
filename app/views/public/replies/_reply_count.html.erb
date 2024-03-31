@@ -1,0 +1,5 @@
+<% if comment.replies.count > 0 %>
+<div class="text-primary" type="button" data-toggle="collapse" data-target="#replies-<%= comment.id %>">
+  さらに表示(<%= comment.replies.count %>)
+</div>
+<% end %>

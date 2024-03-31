@@ -1,0 +1,7 @@
+console.log('<%= @comment %>')
+$("#replies_btn_<%= @comment.id %>").html("<%= j(render 'index', comment: @comment) %>");
+$('#reply_content_<%= @comment.id %>').val("");
+$('#replyForm-<%= @comment.id %>').removeClass('show');
+$('#total_comment').text("<%=j(@total_comment) %>");
+$('#reply_count_<%= @comment.id %>').html(<%= @comment.replies.count %>);
+$('#reply_count_<%= @comment.id %>').html("<%= j(render 'reply_count', comment: @comment) %>");
