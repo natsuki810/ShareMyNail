@@ -15,7 +15,7 @@
     <% @favorites.each do |favorites| %>
     <% if favorites.design.is_active == true %>
     <div class="col-lg-3 col-md-6 col-sm-12 my-5">
-      <%= link_to design_path(favorites.design.id), class: "design-link" do %>
+      <%= link_to designs_show_path(favorites.design.id), class: "design-link" do %>
         <%= image_tag favorites.design.image.variant(resize: '200x200') %>
       <% end %>
       <div class="col-12 font-weight-bold">

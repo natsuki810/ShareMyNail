@@ -7,10 +7,10 @@ class Public::RepliesController < ApplicationController
     @reply.user_id = current_user.id
     if @reply.save
       flash[:notice_comment] = "投稿に成功しました"
-      redirect_to design_path(@comment.design.id)
+      redirect_to designs_show_path(@comment.design.id)
     else
       flash[:notice_comment] = "投稿に失敗しました"
-      redirect_to design_path(@comment.design.id)
+      redirect_to designs_show_path(@comment.design.id)
     end
   end
 
@@ -19,10 +19,10 @@ class Public::RepliesController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     if @reply.update(reply_params)
       flash[:notice_comment] = "投稿に成功しました"
-      redirect_to design_path(@comment.design.id)
+      redirect_to designs_show_path(@comment.design.id)
     else
       flash[:notice_comment] = "投稿に失敗しました"
-      redirect_to design_path(@comment.design.id)
+      redirect_to designs_show_path(@comment.design.id)
     end
   end
 
@@ -30,7 +30,7 @@ class Public::RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
     @comment = Comment.find(params[:comment_id])
     @reply.destroy
-    redirect_to design_path(@comment.design.id)
+    redirect_to designs_show_path(@comment.design.id)
   end
 
   def replies_update

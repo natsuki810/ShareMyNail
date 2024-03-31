@@ -1,0 +1,3 @@
+$("#comments_btn_<%= @design.id %>").html("<%= j(render 'index', comments: @comments) %>");
+$('#comment_content').val("");
+$('#commentForm').removeClass('show')

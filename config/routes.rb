@@ -37,14 +37,19 @@ Rails.application.routes.draw do
     get "/users/confirm" => "users#confirm"
     patch "users/withdrawal" => "users#withdrawal"
     delete "designs/:design_id/replies/:id" => "comments#reply#destroy", as: "design_reply"
-    resources :designs, only: [:index, :show, :edit, :update, :destroy, :new, :create] do
+    resources :designs, only: [:index, :edit, :update, :destroy, :new, :create] do
     resources :reports, only: [:new, :create]
-    resources :comments, only: [:create, :update, :destroy]
+    resources :comments, only: [:destroy]
     resource :favorites, only: [:create, :destroy]
   end
-    resources :comments do
+    resources :comments, only: [] do
       resources :replies, only: [:create, :update, :destroy]
     end
+
+    get "designs/show/:id" => "designs#show", as: "designs_show"
+    delete "designs/show/:id" => "comments#destroy", as: "design_comment_destroy"
+    patch "designs/show/:id" => "comments#update", as: "design_comment_update"
+    post "designs/show/:id" => "comments#create", as: "design_comments"
 
     patch "comments/:id/comments_update" => "comments#comments_update", as: "comments_update"
     delete "comments/:id/comments_destroy" => "comments#comments_destroy", as: "comments_destroy"

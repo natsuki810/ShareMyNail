@@ -14,7 +14,7 @@ class Public::DesignsController < ApplicationController
     end
     if @design.save
       flash[:notice] = "投稿に成功しました"
-      redirect_to design_path(@design)
+      redirect_to designs_show_path(@design)
     else
       render :new
     end
@@ -50,18 +50,18 @@ class Public::DesignsController < ApplicationController
   def edit
     @design = Design.find(params[:id])
     if @design.user != current_user
-      redirect_to  design_path
+      redirect_to  designs_show_path
     end
   end
 
   def update
     @design = Design.find(params[:id])
     if @design.user != current_user
-      redirect_to  design_path
+      redirect_to  designs_show_path
     else
       if @design.update(design_params)
         flash[:notice] = "編集に成功しました"
-        redirect_to design_path(params[:id])
+        redirect_to designs_show_path(params[:id])
       else
         render :edit
       end
@@ -74,7 +74,7 @@ class Public::DesignsController < ApplicationController
       @design.destroy
       redirect_to users_designs_path(current_user) and return
     end
-    redirect_to design_path(params[:id])
+    redirect_to designs_show_path(params[:id])
   end
 
   private
