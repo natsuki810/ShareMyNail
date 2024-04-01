@@ -1,19 +1,19 @@
-<div class="bg-pink pl-3">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-md-3 my-sm-1">
       <%= link_to "Home", root_path %> >
-      <%= link_to "Designs All", designs_path %> >
+      <%= link_to "Designs All", designs_path %> ><br class="d-sm-none">
       Report
     </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="h3">Report</div>
+    <div class="h3 col-lg-10 col-sm-12">Report</div>
   </div>
   <%= form_with url: design_reports_path(@design) do |f| %>
   <div class="row">
-    <div class="col-8 m-2 p-2">
+    <div class="col-lg-8 col-sm-12 m-2 p-2">
       <% if @type == "design" %>
         不適切な デザイン を報告する
       <% elsif @type == "comment" %>
@@ -23,12 +23,12 @@
       <% end %>
     </div>
   </div>
-    <div class="col-8 m-2 p-2">
+    <div class="col-lg-8 col-sm-12 m-2 p-2">
       <%= f.hidden_field :type, value: @type%>
       <%= f.hidden_field :content_id, value: @id %>
       <%= f.text_area :introduction, class: "form-control" %>
     </div>
-    <div class="col-8 m-2 p-2">
+    <div class="col-lg-8 col-sm-12 m-2 p-2">
       <%= f.submit "報告する", class: "btn btn-outline-danger btn-block" %>
     </div>
   <% end %>

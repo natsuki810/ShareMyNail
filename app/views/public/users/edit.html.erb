@@ -1,8 +1,8 @@
-<div class="bg-pink pl-3">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-md-3 my-sm-1">
       <%= link_to "Home", root_path %> >
-      <%= link_to "My Page", users_mypage_path(@user.id) %> >
+      <%= link_to "My Page", users_mypage_path(@user.id) %> ><br class="d-sm-none">
       My Profile
     </div>
   </div>
@@ -11,13 +11,13 @@
 <%= form_with model: @user, url: users_mypage_edit_path do |f| %>
 <div class="container">
   <div class="row">
-    <div class="h3">Edit My Profile</div>
+    <div class="h3 col-lg-10 col-sm-12">Edit My Profile</div>
   </div>
   <div class="row">
     <div class="h4">name</div>
   </div>
   <div class="row">
-    <div class="col-6 mb-2 py-2">
+    <div class="col-lg-6 col-sm-12 mb-2 py-2">
       <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
@@ -25,7 +25,7 @@
     <div class="h4">mail address</div>
   </div>
   <div class="row">
-    <div class="col-6 mb-2 py-2">
+    <div class="col-lg-6 col-sm-12 mb-2 py-2">
       <%= f.email_field :email, class: "form-control" %>
     </div>
   </div>
@@ -33,15 +33,15 @@
     <div class="h4">introduction</div>
   </div>
   <div class="row">
-    <div class="col-6 mb-2 py-2">
+    <div class="col-lg-6 col-sm-12 mb-2 py-2">
       <%= f.text_area :introduction, class: "form-control" %>
     </div>
   </div>
   <div class="row">
-    <div class="col-3 my-2">
+    <div class="col-lg-3 col-sm-12 m-2">
       <%= f.submit "編集する", class: "btn btn-outline-success btn-block" %>
     </div>
-    <div class="col-3 my-2">
+    <div class="col-lg-3 col-sm-12 m-2">
       <%= link_to "退会する", users_confirm_path, class: "btn btn-outline-danger btn-block" %>
     </div>
   </div>
