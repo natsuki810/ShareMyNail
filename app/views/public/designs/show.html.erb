@@ -1,6 +1,6 @@
 <div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col-12 my-3">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
       <%= link_to "Home", root_path %> >
       <%= link_to "Designs All", designs_path %> ><br class="d-sm-none">
       <%= @design.name %>
@@ -32,7 +32,7 @@
   <div class="row">
     <div class="design-grpup col-lg-7 col-sm-12 m-2">
       <div class="col-lg-6 col-sm-12 text-center my-2">
-        <%= image_tag @design.image.variant(resize: '400x400') %>
+        <%= image_tag @design.image.variant(resize: '300x300') %>
       </div>
       <div class="col-12 m-1">
         <div class="fa-solid fa-calendar-days">

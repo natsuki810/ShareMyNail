@@ -1,6 +1,6 @@
 <div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 my-md-3 my-sm-1">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
       <%= link_to "Home", root_path %> >
       <% if @user == current_user %>
         My Page
@@ -45,7 +45,7 @@
       <i class="fa-regular fa-file-lines"></i>
       Introduction
     </div>
-    <div class="col-lg-4 col-md-8 col-sm-12 mb-2 py-2 border rounded">
+    <div class="col-lg-10 col-md-8 col-sm-12 mb-2 py-2 border rounded">
       <%= @user.introduction %>
     </div>
   </div>

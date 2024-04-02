@@ -1,6 +1,6 @@
-<div class="bg-pink pl-3">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-md-3 my-sm-1">
       <%= link_to "Home", admin_top_path %> >
       Colors All
     </div>
@@ -10,16 +10,16 @@
 <%= form_with model: @color, url: admin_colors_path do |f| %>
 <div class="container">
   <div class="row">
-    <div class="h3">Colors All</div>
+    <div class="h3 col-lg-10 col-sm-12">Colors All</div>
   </div>
   <div class="row">
     <div class="h4">Create Color</div>
   </div>
   <div class="row">
-    <div class="col-3 my-2">
+    <div class="col-lg-4 col-md-7 col-sm-12 my-2">
       <%= f.text_field :name, class: "form-control" %>
     </div>
-    <div class="col-3 my-2">
+    <div class="col-lg-4 col-md-4 col-sm-12 my-2">
       <%= f.submit "追加", class: "btn btn-outline-success btn-block" %>
     </div>
   </div>
@@ -29,11 +29,11 @@
   </div>
   <% @colors.each do |color| %>
   <div class="row">
-    <div class="col-3 my-2">
+    <div class="col-lg-4 col-md-7 col-sm-12 my-2">
       <%= color.name %>
     </div>
     <% if color.name != "その他" %>
-    <div class="col-3 my-2">
+    <div class="col-lg-4 col-md-4 col-sm-12 my-2">
       <%= link_to "削除", admin_color_path(color.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
     </div>
     <% end %>
