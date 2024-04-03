@@ -1,6 +1,6 @@
 <div class="design_favorites_ranking">
   <div class="row m-3">
-    <div class="h4">Designs Ranking</div>
+    <div class="h4 text-nowrap">Designs Ranking</div>
   </div>
   <% design_ranks.each.with_index(1) do |rank, i| %>
   <div class="col m-3">
@@ -8,21 +8,21 @@
     <%= link_to admin_design_path(rank), class: "design-link" do %>
       <%= image_tag rank.image.variant(resize: '150x150') %>
     <% end %>
-    <div class="col">
+    <div class="col-12">
       <div class="fa-solid fa-calendar-days">
-        <%= design.created_at.strftime('%Y/%m/%d')  %>
+        <%= rank.created_at.strftime('%Y/%m/%d')  %>
       </div>
     </div>
-    <div class="col font-weight-bold">
+    <div class="col-12 font-weight-bold">
       <%= rank.name %>
     </div>
-    <div class="col">
+    <div class="col-12">
       <i class="fa-regular fa-user"></i>
       <%= link_to admin_user_path(rank.user.id), class: "user_design-link" do %>
         <%= rank.user.name %>
       <% end %>
     </div>
-    <div class="col">
+    <div class="col-12">
       <i class="fa-solid fa-heart"></i>
       <%= rank.favorites.count %>
       <i class="fa-regular fa-comment"></i>

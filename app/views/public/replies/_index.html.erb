@@ -1,7 +1,7 @@
 <div id="replies-<%= comment.id %>" class="collapse">
   <% comment.replies.each do |reply| %>
     <div class="col-12 mx-4 border border-2">
-      <div class="col small">
+      <div class="col-12 small">
         <%= reply.created_at.strftime('%Y/%m/%d') %>
       </div>
       <div class="col-12 font-weight-bold">

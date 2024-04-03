@@ -20,7 +20,7 @@ class Public::ReportsController < ApplicationController
       @report.reply_id = params[:content_id]
     end
     @report.save
-    redirect_to design_path(@design)
+    redirect_to designs_show_path(@design)
   end
 
   private

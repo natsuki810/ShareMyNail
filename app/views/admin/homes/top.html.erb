@@ -1,6 +1,6 @@
-<div class="bg-pink">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
         Home
     </div>
   </div>
@@ -8,32 +8,32 @@
 <%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
-    <div class="h3">Admin Top</div>
+    <div class="h3 col-lg-10 col-sm-12">Admin Top</div>
   </div>
   <div class="row">
     <div class="h4">New Design</div>
   </div>
   <div class="row">
     <% @designs.each do |design| %>
-    <div class="col-3 my-3">
+    <div class="col-lg-4 col-md-6 col-sm-12 my-5">
       <%= link_to admin_design_path(design.id), class: "design-link" do %>
         <%= image_tag design.image.variant(resize: '200x200') %>
       <% end %>
-      <div class="col">
+      <div class="col-12">
         <div class="fa-solid fa-calendar-days">
           <%= design.created_at.strftime('%Y/%m/%d')  %>
         </div>
       </div>
-      <div class="col font-weight-bold">
+      <div class="col-12 font-weight-bold">
         <%= design.name %>
       </div>
-      <div class="col">
+      <div class="col-12">
         <i class="fa-regular fa-user"></i>
         <%= link_to admin_user_path(design.user.id), class: "user_design-link" do %>
           <%= design.user.name %>
         <% end %>
       </div>
-      <div class="col">
+      <div class="col-12">
         <i class="fa-solid fa-heart"></i>
         <%= design.favorites.count %>
         <i class="fa-regular fa-comment"></i>
@@ -43,7 +43,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3 my-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
       <%= link_to "Designs All", admin_designs_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
@@ -53,20 +53,20 @@
   <div class="row">
     <% @reports.each do |report| %>
     <% if is_task_link(report) %>
-      <div class="col-3 m-2 border rounded">
+      <div class="col-lg-3 col-md-6 col-sm-12 m-2 border rounded">
         <div class="col m-1">
           <i class="fa-solid fa-calendar-days"></i>
           <%= report.created_at.strftime('%Y/%m/%d') %>
         </div>
-        <div class="col m-1">
+        <div class="col-12 m-1">
           <i class="fa-solid fa-triangle-exclamation"></i>
           <%= target_link(report) %>
         </div>
-        <div class="col m-1">
+        <div class="col-12 m-1">
           <i class="fa-solid fa-envelope-circle-check"></i>
           <%= report.introduction %>
         </div>
-        <div class="col m-1">
+        <div class="col-12 m-1">
           <i class="fa-regular fa-user"></i>
           <%= report.user.name %>
         </div>
@@ -75,7 +75,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3 my-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
       <%= link_to "Reports All", admin_reports_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
@@ -85,39 +85,39 @@
   <div class="row">
   <% @array.each do |comment| %>
   <% if comment.instance_of?(Comment) %>
-    <div class="col-3 m-2 border rounded">
+    <div class="col-lg-3 col-md-6 col-sm-12 m-2 border rounded">
       <div class="col m-1">
         <i class="fa-solid fa-calendar-days"></i>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-comment"></i>
         <%= comment.content %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-user"></i>
         <%= comment.user.name %>
       </div>
-      <div class="col m-1 text-right">
+      <div class="col-12 m-1 text-right">
         <%= link_to "詳細", admin_design_path(comment.design.id) %>
       </div>
     </div>
   <% else %>
     <% reply = comment %>
-    <div class="col-3 m-2 border rounded">
-      <div class="col m-1">
+    <div class="col-lg-3 col-md-6 col-sm-12 m-2 border rounded">
+      <div class="col-12 m-1">
         <i class="fa-solid fa-calendar-days"></i>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-comment"></i>
         <%= comment.content %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-user"></i>
         <%= comment.user.name %>
       </div>
-      <div class="col m-1 text-right">
+      <div class="col-12 m-1 text-right">
         <%= link_to "詳細", admin_design_path(reply.comment.design.id) %>
       </div>
     </div>
@@ -125,7 +125,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3 my-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 my-2">
       <%= link_to "Comments All", admin_comments_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>

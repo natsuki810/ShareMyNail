@@ -1,6 +1,6 @@
 <%= render "public/shared/flash", flash_message: flash[:notice_comment] %>
 <% comments.each do |comment| %>
-  <div class="col m-1 border border-2">
+  <div class="col-12 m-1 border border-2">
     <div class="col-12 small">
       <%= comment.created_at.strftime('%Y/%m/%d') %>
     </div>

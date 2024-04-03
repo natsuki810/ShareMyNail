@@ -1,6 +1,6 @@
 <div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 my-md-3 my-sm-1">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
       <%= link_to "Home", admin_top_path %> >
       Comments All
     </div>
@@ -9,59 +9,59 @@
 <%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
-    <div class="h3">Comments All</div>
+    <div class="h3 col-lg-10 col-sm-12">Comments All</div>
   </div>
   <div class="row">
     <% @array.each do |comment| %>
     <% if comment.instance_of?(Comment) %>
-    <div class="col-10 mb-3 border border-2">
+    <div class="col-lg-10 col-sm-12 center-block mb-3 border border-2">
       <i class="fa-solid fa-calendar-days"></i>
       <div class="col small"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
       <div class="row">
-        <div class="col-4 m-2 font-weight-bold">
+        <div class="col-lg-4 col-md-6 col-sm-12 m-2 font-weight-bold">
           <i class="fa-regular fa-file-lines"></i>
           <%= link_to admin_designs_path(comment.design.id), class: "design-link" do %>
             <%= comment.design.name %>
           <% end %>
         </div>
-        <div class="col-4 m-2">
+        <div class="col-lg-4 col-md-5 col-sm-12 m-2">
           <i class="fa-regular fa-user"></i>
           <%= comment.design.user.name %>
         </div>
       </div>
-      <div class="col m-2">
+      <div class="col-12 m-2">
         <i class="fa-regular fa-comment"></i>
         <%= comment.content %>
       </div>
       <div class="row">
-        <div class="col m-1 text-right">
+        <div class="col-lg-2 m-1 text-right">
           <%= link_to "コメント削除", admin_comments_destroy_path(comment), method: :delete, class: "text-danger", data: { confirm: '本当に削除しますか？' } %>
         </div>
       </div>
     </div>
     <% else %>
     <% reply = comment %>
-    <div class="col-10 mb-3 border border-2">
+    <div class="col-lg-10 col-sm-12 center-block mb-3 border border-2">
       <i class="fa-solid fa-calendar-days"></i>
       <div class="col small"><%= reply.created_at.strftime('%Y/%m/%d') %></div>
       <div class="row">
-        <div class="col-4 m-2 font-weight-bold">
+        <div class="col-lg-4 col-md-6 col-sm-12 m-2 font-weight-bold">
           <i class="fa-regular fa-file-lines"></i>
           <%= link_to design_path(reply.comment.design.id), class: "design-link" do %>
             <%= reply.comment.design.name %>
           <% end %>
         </div>
-        <div class="col-4 m-2">
+        <div class="col-lg-4 col-md-5 col-sm-12 m-2">
           <i class="fa-regular fa-user"></i>
           <%= reply.comment.design.user.name %>
         </div>
       </div>
-      <div class="col m-2">
+      <div class="col-12 m-2">
         <i class="fa-solid fa-comment"></i>
         <%= reply.content %>
       </div>
       <div class="row">
-        <div class="col m-1 text-right">
+        <div class="col-lg-2 m-1 text-right">
           <%= link_to "返信削除", admin_replies_destroy_path(reply), method: :delete, class: "text-danger", data: { confirm: '本当に削除しますか？' } %>
         </div>
       </div>
