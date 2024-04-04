@@ -1,6 +1,6 @@
-<div class="bg-pink">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
       <%= link_to "Home", admin_top_path %> >
       Users All
     </div>
@@ -8,25 +8,25 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="h3">Users All</div>
+    <div class="h3 col-lg-10 col-sm-12">Users All</div>
   </div>
   <div class="row">
-      <div class="col-2 m-2">
+      <div class="col-lg-2 col-sm-3">
         <div class="h4">
           User ID
         </div>
       </div>
-      <div class="col-3 m-2">
+      <div class="col-lg-3 col-sm-3">
         <div class="h4">
           User Name
         </div>
       </div>
-      <div class="col-3 m-2">
+      <div class="col-lg-3 col-sm-3">
         <div class="h4">
           User Status
         </div>
       </div>
-      <div class="col-3 m-2">
+      <div class="col-lg-3 col-sm-3">
         <div class="h4">
           Design
         </div>
@@ -34,16 +34,16 @@
   </div>
   <% @users.each do |user| %>
   <div class="row">
-    <div class="col-2 m-2">
+    <div class="col-lg-2 col-sm-3 my-2">
       <%= user.id %>
     </div>
-    <div class="col-3 m-2">
+    <div class="col-lg-3 col-sm-3 my-2">
       <i class="fa-regular fa-user"></i>
       <%= link_to admin_user_path(user.id), class: "user-link" do %>
         <%= user.name %>
       <% end %>
     </div>
-    <div class="col-3 m-2">
+    <div class="col-lg-3 col-sm-3 my-2">
       <% if user.is_active %>
         <i class="fa-solid fa-unlock"></i>
         <span class="font-weight-bold text-success">有効</span>
@@ -52,7 +52,7 @@
         <span class="font-weight-bold text-secondary">退会</span>
       <% end %>
     </div>
-    <div class="col-2 m-2">
+    <div class="col-lg-2 col-sm-3 my-2">
       <%= link_to admin_users_designs_path(user.id), class: "user-design-link" do %>
         <%= user.name %>' Design
       <% end %>

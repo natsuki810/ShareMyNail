@@ -53,7 +53,7 @@
   <div class="row">
     <% @reports.each do |report| %>
     <% if is_task_link(report) %>
-      <div class="col-lg-3 col-md-6 col-sm-12 m-2 border rounded">
+      <div class="col-lg-3 col-md-5 col-sm-12 m-2 border rounded">
         <div class="col m-1">
           <i class="fa-solid fa-calendar-days"></i>
           <%= report.created_at.strftime('%Y/%m/%d') %>
@@ -85,8 +85,8 @@
   <div class="row">
   <% @array.each do |comment| %>
   <% if comment.instance_of?(Comment) %>
-    <div class="col-lg-3 col-md-6 col-sm-12 m-2 border rounded">
-      <div class="col m-1">
+    <div class="col-lg-3 col-md-5 col-sm-12 m-2 border rounded">
+      <div class="col-12 m-1">
         <i class="fa-solid fa-calendar-days"></i>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
@@ -104,7 +104,7 @@
     </div>
   <% else %>
     <% reply = comment %>
-    <div class="col-lg-3 col-md-6 col-sm-12 m-2 border rounded">
+    <div class="col-lg-3 col-md-5 col-sm-12 m-2 border rounded">
       <div class="col-12 m-1">
         <i class="fa-solid fa-calendar-days"></i>
         <%= comment.created_at.strftime('%Y/%m/%d') %>

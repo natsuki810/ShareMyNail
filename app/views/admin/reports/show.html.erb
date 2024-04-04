@@ -1,8 +1,8 @@
-<div class="bg-pink pl-3">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
       <%= link_to "Home", admin_top_path %> >
-      <%= link_to "Reports All", admin_reports_path %> >
+      <%= link_to "Reports All", admin_reports_path %> ><br class="d-lg-none">
       <% if @report.design.present? %>
       Report Design
       <% elsif @report.comment.present? %>
@@ -15,26 +15,26 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="h3">報告内容</div>
+    <div class="h3 col-lg-10 col-sm-12">報告内容</div>
   </div>
   <div class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-sm-12">
       <div class="h4">報告日</div>
-      <div class="col mb-5">
+      <div class="col-12 mb-lg-5 mb-md-4 mb-sm-5">
         <i class="fa-solid fa-calendar-days"></i>
         <%= @report.created_at.strftime('%Y/%m/%d') %>
       </div>
     </div>
-    <div class="col-7">
+    <div class="col-lg-7 col-sm-12">
       <div class="h4">報告内容</div>
-      <div class="col mb-5">
+      <div class="col-12 mb-lg-5 mb-md-4 mb-sm-5">
         <i class="fa-solid fa-triangle-exclamation"></i>
         <%= @report.introduction %>
       </div>
     </div>
-    <div class="col-2">
+    <div class="col-lg-2 col-sm-12">
       <div class="h4">報告者</div>
-      <div class="col mb-5">
+      <div class="col-12 mb-lg-5 mb-md-4 mb-sm-5">
         <i class="fa-regular fa-user"></i>
         <%= @report.user.name %>
       </div>
@@ -47,29 +47,29 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-7 my-5">
+      <div class="col-lg-7 com-sm-12 my-5">
         <%= image_tag @report.design.image.variant(resize: '400x400') %>
-        <div class="col my-1 font-weight-bold">
+        <div class="col-12 my-1 font-weight-bold">
           <i class="fa-regular fa-user"></i>
           <%= @report.design.user.name %>
         </div>
-        <div class="col m-1">
+        <div class="col-12 m-1">
           <i class="fa-regular fa-file-lines"></i>
           <%= @report.design.introduction %>
         </div>
-        <div class="col m-1">
+        <div class="col-12 m-1">
           <i class="fa-solid fa-palette"></i>
           <%= @report.design.color.name %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-5 my-3">
+      <div class="col-lg-5 col-sm-12 m-2">
       <%= form_with model: @report, url: admin_report_path do |f| %>
         <%= f.submit "対応済", class: "btn btn-outline-success btn-block" %>
       <% end %>
       </div>
-      <div class="col-5 my-3">
+      <div class="col-lg-5 col-sm-12 m-2">
         <%= link_to "削除", admin_design_destroy_path(@report.design.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
       </div>
     </div>
@@ -78,24 +78,24 @@
       <div class="h5">コメント</div>
     </div>
     <div class="row">
-      <div class="col-7 my-3">
-        <div class="col my-3 font-weight-bold">
+      <div class="col-lg-7 com-sm-12 my-5">
+        <div class="col-12 my-3 font-weight-bold">
           <i class="fa-regular fa-user"></i>
           <%= @report.comment.user.name %>
         </div>
-        <div class="col my-3 font-weight-bold">
+        <div class="col-12 my-3 font-weight-bold">
           <i class="fa-regular fa-comment"></i>
           <%= @report.comment.content %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-5 my-3">
+      <div class="col-lg-5 col-sm-12 m-2">
       <%= form_with model: @report, url: admin_report_path do |f| %>
         <%= f.submit "対応済", class: "btn btn-outline-success btn-block" %>
       <% end %>
       </div>
-      <div class="col-5 my-3">
+      <div class="col-lg-5 col-sm-12 m-2">
         <%= link_to "削除する", admin_reports_comments_destroy_path(@report.comment.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
       </div>
     </div>
@@ -104,24 +104,24 @@
       <div class="h5">コメント返信</div>
     </div>
     <div class="row">
-      <div class="col-7 my-3">
-        <div class="col my-3 font-weight-bold">
+      <div class="col-lg-7 com-sm-12 my-5">
+        <div class="col-12 my-3 font-weight-bold">
           <i class="fa-regular fa-user"></i>
           <%= @report.reply.user.name %>
         </div>
-        <div class="col my-3 font-weight-bold">
+        <div class="col-12 my-3 font-weight-bold">
           <i class="fa-regular fa-comment"></i>
           <%= @report.reply.content %>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-5 my-3">
+      <div class="col-lg-5 col-sm-12 m-2">
       <%= form_with model: @report, url: admin_report_path do |f| %>
         <%= f.submit "対応済", class: "btn btn-outline-success btn-block" %>
       <% end %>
       </div>
-      <div class="col-5 my-3">
+      <div class="col-lg-5 col-sm-12 m-2">
         <%= link_to "削除する", admin_reports_replies_destroy_path(@report.reply.id), method: :delete, class: "btn btn-outline-danger btn-block", data: { confirm: '本当に削除しますか？' } %>
       </div>
     </div>

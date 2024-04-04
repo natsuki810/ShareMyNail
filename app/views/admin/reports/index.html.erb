@@ -1,4 +1,4 @@
-<div class="bg-pink pl-3">
+<div class="container-fluid bg-pink">
   <div class="row">
     <div class="col m-2">
       <%= link_to "Home", admin_top_path %> >
@@ -9,48 +9,48 @@
 <%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
-    <div class="h3">Reports All</div>
+    <div class="h3 col-lg-10 col-sm-12">Reports All</div>
   </div>
   <div class="row">
-    <div class="col-3 my-3">
+    <div class="col-lg-3 col-sm-12 m-2">
       <%= link_to "Comments All", admin_comments_path, class: "btn btn-outline-primary btn-block" %>
     </div>
-    <div class="col-3 my-3">
+    <div class="col-lg-3 col-sm-12 m-2">
       <%= link_to "Designs All", admin_designs_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
   <div class="row">
-    <div class="col-1">
-      <div class="h4">☑️</div>
+    <div class="col-lg-1 col-sm-1">
+      <div class="h4">☑︎️</div>
     </div>
-    <div class="col-2">
+    <div class="col-lg-2 col-sm-5">
       <div class="h4">報告日</div>
     </div>
-    <div class="col-2">
+    <div class="col-lg-2 col-sm-6">
       <div class="h4">報告ユーザー</div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-sm-12">
       <div class="h4">報告内容</div>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-sm-12">
       <div class="h4">報告箇所</div>
     </div>
   </div>
   <% @reports.each do |report| %>
   <div class="row">
-    <div class="col-1 my-2 border">
+    <div class="col-lg-1 col-sm-1 my-2 border">
       <%= task_link(report) %>
     </div>
-    <div class="col-2 my-2 border">
+    <div class="col-lg-2 col-sm-5 my-2 border">
       <%= report.created_at.strftime('%Y/%m/%d') %>
     </div>
-    <div class="col-2 my-2 border">
+    <div class="col-lg-2 col-sm-6 my-2 border">
       <%= report.user.name %>
     </div>
-    <div class="col-4 my-2 border">
+    <div class="col-lg-4 col-sm-12 my-2 border">
       <%= report.introduction %>
     </div>
-    <div class="col-3 my-2 border">
+    <div class="col-lg-3 col-sm-12 my-2 border">
       <%= target_link(report) %>
     </div>
   </div>

@@ -1,6 +1,6 @@
-<div class="bg-pink">
+<div class="container-fluid bg-pink">
   <div class="row">
-    <div class="col m-2">
+    <div class="col-lg-6 col-md-6 col-sm-12 my-3">
       <%= link_to "Home", admin_top_path %> >
       <%= link_to "Users All", admin_users_path %> >
       <%= @user.name %>
@@ -10,42 +10,42 @@
 <%= render "public/shared/flash", flash_message: flash[:notice] %>
 <div class="container">
   <div class="row">
-    <div class="h3">User's Page</div>
+    <div class="h3 col-lg-10 col-sm-12">User's Page</div>
   </div>
     <div class="row">
     <div class="h4">Profile</div>
   </div>
   <div class="row">
-    <div class="col-2 mb-2 py-2 font-weight-bold">
+    <div class="col-lg-2 col-md-4 col-sm-12 mb-2 py-2 font-weight-bold">
       <i class="fa-regular fa-user"></i>
       use name
     </div>
-    <div class="col-4 mb-2 py-2 border rounded">
+    <div class="col-lg-4 col-md-8 col-sm-12 mb-2 py-2 border rounded">
       <%= @user.name %>
     </div>
-    <div class="col-2 mb-2 py-2 font-weight-bold">
+    <div class="col-lg-2 col-md-4 col-sm-12 mb-2 py-2 font-weight-bold">
       <i class="fa-regular fa-envelope"></i>
       mail address
     </div>
-    <div class="col-4 mb-2 py-2 border rounded">
+    <div class="col-lg-4 col-md-8 col-sm-12 mb-2 py-2 border rounded">
       <%= @user.email %>
     </div>
   </div>
   <div class="row">
-    <div class="col-2 my-2 py-3 font-weight-bold">
+    <div class="col-lg-2 col-md-4 col-sm-12 mb-2 py-2 font-weight-bold">
       <i class="fa-regular fa-file-lines"></i>
       Introduction
     </div>
-    <div class="col-6 my-2 py-3 border rounded">
+    <div class="col-lg-10 col-md-8 col-sm-12 mb-2 py-2 border rounded">
       <%= @user.introduction %>
     </div>
   </div>
   <div class="row">
-    <div class="col-2 my-2 py-3 font-weight-bold">
+    <div class="col-lg-2 col-md-4 col-sm-12 mb-2 py-2 font-weight-bold">
       <i class="fa-solid fa-key"></i>
       user status
     </div>
-    <div class="col-2 my-2 py-3">
+    <div class="col-lg-2 col-md-4 col-sm-12 mb-2 py-2">
       <% if @user.is_active %>
         <i class="fa-solid fa-unlock"></i>
         <span class="font-weight-bold text-success">公開</span>
@@ -56,7 +56,7 @@
     </div>
   </div>
     <div class="row">
-      <div class="col-3 my-2 py-3">
+      <div class="col-lg-3 col-sm-12 m-2">
         <%= link_to "編集する >>", edit_admin_user_path, class: "btn btn-outline-primary btn-block" %>
       </div>
     </div>
@@ -65,20 +65,20 @@
   </div>
   <div class="row">
     <% @designs.each do |design| %>
-    <div class="col-3 my-4">
+    <div class="col-lg-3 col-md-6 col-sm-12 my-4">
       <%= link_to admin_design_path(design.id), class: "design-link" do %>
         <%= image_tag design.image.variant(resize: '200x200') %>
       <% end %>
-      <div class="col font-weight-bold">
+      <div class="col-12 font-weight-bold">
         <%= design.name %>
       </div>
-      <div class="col">
+      <div class="col-12">
         <i class="fa-solid fa-heart"></i>
         <%= design.favorites.count %>
         <i class="fa-regular fa-comment"></i>
         <%= design.comments.count %>
       </div>
-      <div class="col">
+      <div class="col-12">
         <% if design.is_active %>
           <i class="fa-solid fa-unlock"></i>
           <span class="font-weight-bold text-success">公開</span>
@@ -91,7 +91,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3">
+    <div class="col-lg-3 col-sm-12 m-2">
       <%= link_to "User's Designs All >>", admin_users_designs_path(@user.id), class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
@@ -101,39 +101,39 @@
   <div class="row">
   <% @array.each do |comment| %>
   <% if comment.instance_of?(Comment) %>
-    <div class="col-3 m-2 border rounded">
-      <div class="col m-1">
+    <div class="col-lg-3 col-md-5 col-sm-12 m-2 border rounded">
+      <div class="col-12 m-1">
         <i class="fa-solid fa-calendar-days"></i>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-comment"></i>
         <%= comment.content %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-user"></i>
         <%= comment.user.name %>
       </div>
-      <div class="col m-1 text-right">
+      <div class="col-12 m-1 text-right">
         <%= link_to "詳細", admin_design_path(comment.design.id) %>
       </div>
     </div>
   <% else %>
     <% reply = comment %>
-    <div class="col-3 m-2 border rounded">
-      <div class="col m-1">
+    <div class="col-lg-3 col-md-5 col-sm-12 m-2 border rounded">
+      <div class="col-12 m-1">
         <i class="fa-solid fa-calendar-days"></i>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-comment"></i>
         <%= comment.content %>
       </div>
-      <div class="col m-1">
+      <div class="col-12 m-1">
         <i class="fa-regular fa-user"></i>
         <%= comment.user.name %>
       </div>
-      <div class="col m-1 text-right">
+      <div class="col-12 m-1 text-right">
         <%= link_to "詳細", admin_design_path(reply.comment.design.id) %>
       </div>
     </div>
@@ -141,7 +141,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-3">
+    <div class="col-lg-3 col-sm-12 m-2">
       <%= link_to "User's Comments All >>", admin_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
